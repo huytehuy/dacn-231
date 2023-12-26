@@ -270,7 +270,7 @@ function Checkout(props) {
 
     const [error_address, set_error_address] = useState(false)
 
-    const [from, set_from] = useState('155 Sư Vạn Hạnh, Phường 13, District 10, Ho Chi Minh City, Vietnam')
+    const [from, set_from] = useState('268 Lý Thường Kiệt, Phường 14, District 10, Ho Chi Minh City, Vietnam')
 
     // Khoảng cách
     const [distance, set_distance] = useState('')
@@ -285,10 +285,10 @@ function Checkout(props) {
     // Kiểm tra xem khách hàng đã nhập chỉ nhận hàng hay chưa
     const handler_Next = () => {
 
-        if (!information.address) {
-            set_error_address(true)
-            return
-        }
+        // if (!information.address) {
+        //     set_error_address(true)
+        //     return
+        // }
 
         // Sau khi mà đổ dữ liệu ở bên Jquery xong
         // thì qua bên này mình sẽ lấy những giá trị vừa xử lý
@@ -301,12 +301,17 @@ function Checkout(props) {
         console.log(kilo)
         console.log(duration_text)
         console.log(price_shipping)
+        set_load_order_status(true)
 
-        set_distance(kilo)
-        set_duration(duration_text)
+        // set_distance(kilo)
+        set_distance(1)
+        // set_duration(duration_text)
+        set_duration(1)
 
-        localStorage.setItem('price', price_shipping)
-        set_price(price_shipping)
+        // localStorage.setItem('price', price_shipping)
+        localStorage.setItem('price', 10000)
+        // set_price(price_shipping)
+        set_price(10000)
 
         set_information({
             fullname: information.fullname,
@@ -380,7 +385,7 @@ function Checkout(props) {
                                                     value={information.address}
                                                     onChange={onChangeAddress} />
                                                 {error_address && <span style={{ color: 'red' }}>* Address is required</span>}
-                                                <input id="destination" type="text" name="destination" required="" type="hidden" />
+                                                <input id="destination" name="destination" required="" type="hidden"/>
                                             </div>
                                         </div>
                                         <div className="col-md-12">

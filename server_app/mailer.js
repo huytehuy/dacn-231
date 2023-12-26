@@ -1,8 +1,8 @@
 const nodeMailer = require('nodemailer')
 
-const adminEmail = 'tienkim9920@gmail.com' // Email
+const adminEmail = 'huy.phamkhmtjapan@hcmut.edu.vn' // Email
 
-const adminPassword = 'Tktk0909@' // Password
+const adminPassword = 'Huytehuy147' // Password
 
 // Mình sử dụng host của google - gmail
 const mailHost = 'smtp.gmail.com'

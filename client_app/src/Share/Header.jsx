@@ -236,7 +236,7 @@ function Header(props) {
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-3 col-md-4">
-                            <li><span>Telephone Enquiry:</span><a href="#">(+123) 123 321 345</a></li>
+                            <li><span>Telephone Enquiry:</span><a href="#">(+84) 366 889 853</a></li>
                         </div>
                         <div className="col-lg-9 col-md-8">
                             <ul className="d-flex justify-content-end" >
@@ -250,10 +250,11 @@ function Header(props) {
                                                     aria-expanded="false"
                                                     aria-controls="collapseExample">{user.fullname}</span>) : (
                                                 <span
+                                                    className='text-black'
                                                     data-toggle="collapse"
                                                     data-target="#collapseExample"
                                                     aria-expanded="false"
-                                                    aria-controls="collapseExample">Setting</span>
+                                                    aria-controls="collapseExample"><Link to="/signin">Sign In</Link></span>
                                             )
                                         }
                                     </div>
@@ -265,9 +266,10 @@ function Header(props) {
                                                 <li className="li_setting"><a onClick={handler_logout} href="#">Log Out</a></li>
                                             </ul>
                                         ) : (
-                                            <ul className="setting_ul collapse" id="collapseExample">
-                                                <li className="li_setting"><Link to="/signin">Sign In</Link></li>
-                                            </ul>
+                                            // <ul className="setting_ul collapse" id="collapseExample">
+                                            //     <li className="li_setting"><Link to="/signin">Sign In</Link></li>
+                                            // </ul>
+                                            <></>
                                         )}
 
                                     </div>

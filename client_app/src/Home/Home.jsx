@@ -146,9 +146,9 @@ function Home(props) {
                 </div>
             </div>
 
-            <Home_Product gender={`Male`} category={'60615da34c9cac0448b4b9a2'} GET_id_modal={GET_id_modal} />
+            <Home_Product gender={`Male`} category={'655a1fc0a456ecf4093e1e6f'} GET_id_modal={GET_id_modal} />
 
-            <Home_Product gender={`Female`} category={'60615da34c9cac0448b4b9a8'} GET_id_modal={GET_id_modal} />
+            {/* <Home_Product gender={`Female`} category={'60615da34c9cac0448b4b9a8'} GET_id_modal={GET_id_modal} /> */}
 
 
             <div className="modal fade modal-wrapper" id={id_modal} >
