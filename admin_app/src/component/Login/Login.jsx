@@ -37,10 +37,16 @@ function Login(props) {
     const login = async () => {
         const user = {
             email: email,
-            password: password
+            password: password,
+            id_permission:{
+                permission:"Admin",
+            }
+
         }
         const response = await userAPI.login(user)
-        console.log(response);
+        console.log(user.password);
+        // response.msg = "Đăng nhập thành công";
+        console.log(response.user.id_permission);
 
         if (response.msg === "Đăng nhập thành công") {
             if (response.user.id_permission.permission === "Nhân Viên") {

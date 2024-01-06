@@ -358,6 +358,7 @@ function Checkout(props) {
             </div>
 
             <div className="container" style={{ paddingTop: '3rem', paddingBottom: '3rem' }}>
+                
                 {
                     load_map && (
                         <div className="row">
@@ -377,7 +378,7 @@ function Checkout(props) {
                                             </div>
                                         </div>
                                         <div className="col-md-12">
-                                            <div className="checkout-form-list">
+                                            {/* <div className="checkout-form-list">
                                                 <label>To <span className="required">*</span></label>
                                                 <input type="text"
                                                     id="to_places"
@@ -386,9 +387,9 @@ function Checkout(props) {
                                                     onChange={onChangeAddress} />
                                                 {error_address && <span style={{ color: 'red' }}>* Address is required</span>}
                                                 <input id="destination" name="destination" required="" type="hidden"/>
-                                            </div>
+                                            </div> */}
                                         </div>
-                                        <div className="col-md-12">
+                                        {/* <div className="col-md-12">
                                             <div className="checkout-form-list">
                                                 <div className="form-group">
                                                     <label>
@@ -401,7 +402,7 @@ function Checkout(props) {
                                                     </select>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> */}
                                         <div className="col-md-12">
                                             <div id="result" className="hide">
                                                 <div>
@@ -435,13 +436,28 @@ function Checkout(props) {
                                 </div>
                             </div>
                             <div className="col-lg-6 col-12">
-                                <div id="map" style={{ height: '400px', width: '500px' }}></div>
+                                {/* <div id="map" style={{ height: '400px', width: '500px' }}>
+                                    <iframe src="https://storage.googleapis.com/maps-solutions-xhwbe320tj/commutes/gk0f/commutes.html"
+  width="100%" height="100%"
+//   style="border:0;"
+  loading="lazy">
+</iframe>
+                                </div> */}
+                                <iframe src="https://storage.googleapis.com/maps-solutions-xhwbe320tj/commutes/gk0f/commutes.html"
+  width="100%" height="100%"
+//   style="border:0;"
+  loading="lazy">
+</iframe>
                             </div>
+
+                            
                         </div>
                     )
+                    
                 }
                 {
-                    load_order_status && (
+                    // load_order_status && (
+                        (
                         <div className="row">
                             <div className="col-lg-6 col-12 pb-5">
                                 <form onSubmit={handleSubmit(handler_Checkout)}>

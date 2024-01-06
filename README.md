@@ -21,7 +21,6 @@
 ## Contributors
 - Phạm Khánh Huy
 - Trần Đoàn Minh Tiến
-- Nguyễn Hữu Hiếu
 
 ## ERD
 <img src="https://firebasestorage.googleapis.com/v0/b/todo-app-tienkim.appspot.com/o/diagram.PNG?alt=media&token=656d0b0c-0540-4257-a90a-3c024f50946b" />
@@ -141,7 +140,7 @@
     + 1 Note sẽ thuộc 1 order
 
 ## API
-ROOT API ENDPOINT : http://tienkim9920.herokuapp.com
+<!-- ROOT API ENDPOINT : http://tienkim9920.herokuapp.com -->
 
 ```bash
 
@@ -217,7 +216,8 @@ npm start
 - Login, Register, Forgot Password, ResetPassword .
 - CRUD Products, Users, Carts, Favorite, Order...
 - Axios Products, Carts, Orders...
-- Products url query (http://tienkim9920.herokuapp.com/api/product)
+- Products url querytie
+ <!-- (http://tienkim9920.herokuapp.com/api/product) -->
 - Send email to user.
 - Draw route between two location
 - Payment on paypal
