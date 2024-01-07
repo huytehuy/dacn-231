@@ -256,8 +256,10 @@ function Detail_Product(props) {
                                     </div>
                                     <div className="product-desc">
                                         <p>
-                                            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel harum tenetur delectus nam quam assumenda? Soluta vitae tempora ratione excepturi doloremque, repudiandae ullam, eum corporis, itaque dolor aperiam enim aspernatur.
-                                            </span>
+                                            {/* <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel harum tenetur delectus nam quam assumenda? Soluta vitae tempora ratione excepturi doloremque, repudiandae ullam, eum corporis, itaque dolor aperiam enim aspernatur. */}
+                                            {/* </span> */}
+
+                                            {product.describle}
                                         </p>
                                     </div>
                                     <div className="product-variants">
@@ -305,7 +307,10 @@ function Detail_Product(props) {
                     <div className="tab-content">
                         <div id="description" className="tab-pane active show" role="tabpanel">
                             <div className="product-description">
-                                <span>The best is yet to come! Give your walls a voice with a framed poster. This aesthethic, optimistic poster will look great in your desk or in an open-space office. Painted wooden frame with passe-partout for more depth.</span>
+                                <ul>
+                                    {product.description}
+                                </ul>
+                                {/* <span>The best is yet to come! Give your walls a voice with a framed poster. This aesthethic, optimistic poster will look great in your desk or in an open-space office. Painted wooden frame with passe-partout for more depth.</span> */}
                             </div>
                         </div>
                         <div id="reviews" className="tab-pane" role="tabpanel">

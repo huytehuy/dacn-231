@@ -215,6 +215,22 @@ function Shop(props) {
                                         }
                                     </ul>
                                 </div>
+
+
+                                <div className="li-blog-sidebar">
+                                <h4 className="li-blog-sidebar-title">abc</h4>
+                                    <ul className="li-blog-archive">
+                                        {
+                                            female && female.map(value => (
+                                                <li key={value._id}>
+                                                    <Link to={`/shop/${value._id}`} style={id === value._id ? { cursor: 'pointer', color: '#fed700' } : { cursor: 'pointer' }}>{value.category}</Link>
+                                                </li>
+                                            ))
+                                        }
+                                    </ul>
+                                </div>
+
+
                             </div>
                         </div>
                         <div className="col-lg-9 order-1 order-lg-2">

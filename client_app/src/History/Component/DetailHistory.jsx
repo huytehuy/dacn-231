@@ -23,12 +23,10 @@ function DetailHistory(props) {
         const fetchData = async () => {
 
             const response = await OrderAPI.get_detail(id)
-            console.log(response)
 
             set_order(response)
-
-            const response_detail_order = await Detail_OrderAPI.get_detail_order(id)
-
+            const response_detail_order = await Detail_OrderAPI.get_detail_order(response.id_product)
+            console.log(order.id_product);
             set_detail_order(response_detail_order)
 
         }
@@ -108,8 +106,8 @@ function DetailHistory(props) {
                                                 detail_order && detail_order.map(value => (
                                                     <tr key={value._id}>
                                                         <td className="li-product-thumbnail"><img src={value.id_product.image} style={{ width: '5rem' }} alt="Li's Product Image" /></td>
-                                                        <td className="li-product-name"><a href="#">{value.name_product}</a></td>
-                                                        <td className="li-product-price"><span className="amount">{new Intl.NumberFormat('vi-VN',{style: 'decimal',decimal: 'VND'}).format(value.price_product) + ' VNĐ'}</span></td>
+                                                        <td className="li-product-name"><a href="#">{value.id_product.name_product}</a></td>
+                                                        <td className="li-product-price"><span className="amount">{new Intl.NumberFormat('vi-VN',{style: 'decimal',decimal: 'VND'}).format(value.id_product.price_product) + ' VNĐ'}</span></td>
                                                         <td className="li-product-price"><span className="amount">{value.count}</span></td>
                                                         <td className="li-product-price"><span className="amount">{value.size}</span></td>
                                                     </tr>

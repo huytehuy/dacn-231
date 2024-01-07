@@ -73,6 +73,27 @@ app.use('/api/admin/User', UserAdmin)
 app.use('/api/admin/Order', Order)
 app.use('/api/admin/Coupon', Coupon)
 app.use('/api/admin/Sale', Sale)
+const PORT = 6000;
+
+// Middleware to parse JSON requests
+app.use(bodyParser.json());
+
+// Route to handle POST requests
+app.post('/api/payment/callback', (req, res) => {
+  const receivedData = req.body;
+  console.log('Received data:', receivedData);
+
+  // You can process the received data here as needed
+
+  // Respond back to the client
+  res.send('Data received by the server');
+});
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
+});
+
 
 
 io.on("connection", (socket) => {
