@@ -29,7 +29,7 @@ function MoMo(props) {
         const accessKey = "XPBbArMut5PxmWiY"
         const serectkey = "uLb683H8g9dWuiyipZbLHgO6zjSDlVm5"
         const orderInfo = "Thanh toán MoMo"
-        const notifyurl = "http://localhost:8000/api/Payment/momo"
+        const notifyurl = "http://https://dacn-231-t581.onrender.com/api/Payment/momo"
         const returnUrl = "http://localhost:3000/momo"
         const amount = total.toString()
         const orderId = orderID
