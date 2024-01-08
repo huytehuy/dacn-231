@@ -258,11 +258,12 @@ function Detail_Product(props) {
                                         <p>
                                             {/* <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel harum tenetur delectus nam quam assumenda? Soluta vitae tempora ratione excepturi doloremque, repudiandae ullam, eum corporis, itaque dolor aperiam enim aspernatur. */}
                                             {/* </span> */}
-
-                                            {product.describle}
+                                            {/* {product.describle&&typeof Object.values(product.describle)}
+                                            {typeof product.describle} */}
+                                            {product.describle&&product.describle.map((index)=><div>{index}</div>)}
                                         </p>
                                     </div>
-                                    <div className="product-variants">
+                                    {/* <div className="product-variants">
                                         <div className="produt-variants-size">
                                             <label>Size</label>
                                             <select className="nice-select" onChange={(e) => set_size(e.target.value)}>
@@ -271,7 +272,7 @@ function Detail_Product(props) {
                                                 <option value="L">L</option>
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> */}
                                     <div className="single-add-to-cart">
                                         <form action="#" className="cart-quantity">
                                             <div className="quantity">
@@ -307,8 +308,8 @@ function Detail_Product(props) {
                     <div className="tab-content">
                         <div id="description" className="tab-pane active show" role="tabpanel">
                             <div className="product-description">
-                                <ul>
-                                    {product.description}
+                                <ul className='list-disc'>
+                                    {product.description&&product.description.map((value)=><li>- {value}</li>)}
                                 </ul>
                                 {/* <span>The best is yet to come! Give your walls a voice with a framed poster. This aesthethic, optimistic poster will look great in your desk or in an open-space office. Painted wooden frame with passe-partout for more depth.</span> */}
                             </div>
