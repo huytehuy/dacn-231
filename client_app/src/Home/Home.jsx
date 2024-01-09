@@ -24,6 +24,7 @@ function Home(props) {
     const [id_modal, set_id_modal] = useState('')
 
     const [product_detail, set_product_detail] = useState([])
+    const [product, set_product] = useState([])
 
     const dispatch = useDispatch()
 
@@ -38,6 +39,7 @@ function Home(props) {
     }
 
     const [sale, setSale] = useState([])
+    const productTemp = [];
 
     useEffect(() => {
 
@@ -45,17 +47,21 @@ function Home(props) {
 
             const fetchData = async () => {
 
-                const response = await Product.Get_Detail_Product(id_modal)
-
-                set_product_detail(response)
-
+                const response = await Product.Get_Detail_Product(id_modal);
+                set_product_detail(response);
             }
-
-            fetchData()
-
+            fetchData();
         }
 
     }, [id_modal])
+
+    useEffect(()=>{
+        const fetchData = async () => {
+            const response = await Product.Get_All_Product();
+            set_product(response);
+        }
+        fetchData();
+    },[])
 
 
     // Get count từ redux khi user chưa đăng nhập
@@ -82,6 +88,14 @@ function Home(props) {
         dispatch(action_count_change)
 
     }
+
+    function SetArray(product){
+    product&&product.map((index)=>{productTemp.push(index.gender)})
+    console.log(Array.from(new Set(productTemp)))
+    }
+
+
+    SetArray(product);
 
 
     return (
@@ -145,10 +159,13 @@ function Home(props) {
                     </div>
                 </div>
             </div>
-
-            <Home_Product gender={`Male`} category={'655a1fc0a456ecf4093e1e6f'} GET_id_modal={GET_id_modal} />
+            {Array.from(new Set(productTemp)).map((index)=><Home_Product gender={index} category={index} GET_id_modal={GET_id_modal} />)}
+            {/* <Home_Product gender={`Male`} category={'655a1fc0a456ecf4093e1e6f'} GET_id_modal={GET_id_modal} />
             <Home_Product gender={`Female`} category={'655a1fc0a456ecf4093e1e6f'} GET_id_modal={GET_id_modal} />
-            <Home_Product gender={`Kitchen`} category={'655a1fc0a456ecf4093e1e6q'} GET_id_modal={GET_id_modal} />
+            <Home_Product gender={`Kitchen`} category={'655a1fc0a456ecf4093e1e6q'} GET_id_modal={GET_id_modal} /> */}
+            {/* {product&&product.filter((item, index) => product.indexOf(item) === index)} */}
+
+
 {/* 
             <Checkbox
       defaultChecked
