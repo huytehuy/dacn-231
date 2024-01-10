@@ -58,7 +58,6 @@ function Shop(props) {
             const query = '?' + queryString.stringify(params)
 
             const response = await Product.Get_Pagination(query)
-            console.log(response)
 
             setProducts(response)
 
@@ -74,7 +73,6 @@ function Shop(props) {
 
             //Tính tổng số trang = tổng số sản phẩm / số lượng sản phẩm 1 trang
             const totalPage = Math.ceil(parseInt(response_total_page.length) / parseInt(pagination.count))
-            console.log(totalPage)
 
             setTotalPage(totalPage)
 
@@ -99,7 +97,6 @@ function Shop(props) {
             const query = '?' + queryString.stringify(params)
 
             const response = await Product.Get_Pagination(query)
-            console.log(response)
 
             setProducts(response)
 
@@ -120,7 +117,7 @@ function Shop(props) {
 
             // gender = male
             const params_male = {
-                gender: 'male'
+                gender: 'Male'
             }
 
             const query_male = '?' + queryString.stringify(params_male)
@@ -147,6 +144,7 @@ function Shop(props) {
     }, [])
 
 
+
     const handler_Search = (value) => {
         console.log("Search: ", value)
         
@@ -158,6 +156,14 @@ function Shop(props) {
         })
 
     }
+//     useEffect(() => {
+//     const fetchData = async () => {
+//         const response = await Product.Get_Category_Gender("?male");
+//         set_male(response);
+//     }
+//     fetchData()
+// });
+//     console.log(male)
 
 
 

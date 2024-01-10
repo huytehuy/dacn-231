@@ -91,9 +91,7 @@ function Home(props) {
 
     function SetArray(product){
     product&&product.map((index)=>{productTemp.push(index.gender)})
-    console.log(Array.from(new Set(productTemp)))
     }
-
 
     SetArray(product);
 
@@ -159,7 +157,7 @@ function Home(props) {
                     </div>
                 </div>
             </div>
-            {Array.from(new Set(productTemp)).map((index)=><Home_Product gender={index} category={index} GET_id_modal={GET_id_modal} />)}
+            {Array.from(new Set(productTemp)).map((index,value)=><Home_Product gender={index} category={index} GET_id_modal={GET_id_modal} />)}
             {/* <Home_Product gender={`Male`} category={'655a1fc0a456ecf4093e1e6f'} GET_id_modal={GET_id_modal} />
             <Home_Product gender={`Female`} category={'655a1fc0a456ecf4093e1e6f'} GET_id_modal={GET_id_modal} />
             <Home_Product gender={`Kitchen`} category={'655a1fc0a456ecf4093e1e6q'} GET_id_modal={GET_id_modal} /> */}
@@ -215,11 +213,7 @@ function Home(props) {
                                             }
                                             </div>
                                             <div className="product-desc">
-                                                <p>
-                                                    <span>
-                                                        {product_detail.describe} Veritatis reiciendis hic voluptatibus aperiam culpa ullam dolor esse error ducimus itaque ipsa facilis saepe rem veniam exercitationem quos magnam, odit perspiciatis.
-                                                    </span>
-                                                </p>
+                                            {product_detail.description&&product_detail.description.map((index)=><div>- {index}</div>)}
                                             </div>
                                             <div className="single-add-to-cart">
                                                 <form onSubmit={handler_addcart} className="cart-quantity">

@@ -36,14 +36,14 @@ function DetailEvent(props) {
                 </div>
             </div>
             <div className="container" style={{ marginTop: '3rem' }}>
-                <h1 className="h4_event">{coupon.describe} CÙNG FEAR OF GOD!!!</h1>
+                <h1 className="h4_event">{coupon.describe}</h1>
                 <div style={{ marginTop: '2rem' }}>
                     <a className="a_event">Khuyến mãi</a>
                 </div>
                 <div style={{ marginTop: '2rem'}}>
-                    <span style={{ fontSize: '1.2rem', color: '#646464', fontWeight: 'bold' }}>Cơ hội nhận ngay phiếu giảm giá đơn hàng của FEAR OF GOD!!!</span>
+                    <span style={{ fontSize: '1.2rem', color: '#646464', fontWeight: 'bold' }}>Cơ hội nhận ngay phiếu giảm giá đơn hàng </span>
                     <br />
-                    <span style={{ fontSize: '1.05rem' }}>Chỉ cần bạn ghé ngay FEAR OF GOD và mua đơn hàng sẽ được giảm giá theo mã code dưới đây:</span>
+                    <span style={{ fontSize: '1.05rem' }}>Chỉ cần bạn mua đơn hàng sẽ được giảm giá theo mã code dưới đây:</span>
                     <li style={{ fontSize: '1.05rem' }}>Mã Code: <i style={{ color: 'red' }}>{coupon.code}</i></li>
                     <li style={{ fontSize: '1.05rem' }}>Còn lại: <i style={{ color: 'red' }}>{coupon.count}</i></li>
                     <span style={{ fontSize: '1.05rem' }}>Bạn sẽ nhập mã code vào ô APPLY COUPON trong giỏ hàng của mình.</span>

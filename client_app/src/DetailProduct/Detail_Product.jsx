@@ -255,13 +255,11 @@ function Detail_Product(props) {
                                         }
                                     </div>
                                     <div className="product-desc">
-                                        <p>
                                             {/* <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel harum tenetur delectus nam quam assumenda? Soluta vitae tempora ratione excepturi doloremque, repudiandae ullam, eum corporis, itaque dolor aperiam enim aspernatur. */}
                                             {/* </span> */}
                                             {/* {product.describle&&typeof Object.values(product.describle)}
                                             {typeof product.describle} */}
                                             {product.describle&&product.describle.map((index)=><div>{index}</div>)}
-                                        </p>
                                     </div>
                                     {/* <div className="product-variants">
                                         <div className="produt-variants-size">

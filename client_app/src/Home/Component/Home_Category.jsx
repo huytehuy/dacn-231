@@ -100,18 +100,10 @@ function Home_Category(props) {
                                     <div className="product_desc">
                                         <div className="product_desc_info">
                                             <div className="product-review">
-                                                <h5 className="manufacturer">
-                                                    <a href="shop-left-sidebar.html">{value.id_product.name_product}</a>
+                                                <h5 className="manufacturer" style={{height:40,display:'flex',alignItems:'center'}}>
+                                                <Link to={`/detail/${value.id_product._id}`}>{value.id_product.name_product}</Link>
                                                 </h5>
-                                                <div className="rating-box">
-                                                    <ul className="rating">
-                                                        <li><i className="fa fa-star-o"></i></li>
-                                                        <li><i className="fa fa-star-o"></i></li>
-                                                        <li><i className="fa fa-star-o"></i></li>
-                                                        <li className="no-star"><i className="fa fa-star-o"></i></li>
-                                                        <li className="no-star"><i className="fa fa-star-o"></i></li>
-                                                    </ul>
-                                                </div>
+
                                             </div>
                                             <div className="d-flex justify-content-between price-box">
                                                 <del className="new-price">{new Intl.NumberFormat('vi-VN',{style: 'decimal',decimal: 'VND'}).format(value.id_product.price_product)+ ' VNĐ'}</del>
@@ -120,6 +112,13 @@ function Home_Category(props) {
                                                     .format(parseInt(value.id_product.price_product) - ((parseInt(value.id_product.price_product) * parseInt(value.promotion)) / 100)) + ' VNĐ'}
                                                 </span>
                                             </div>
+                                            <ul className="rating" style={{marginTop:10}}>
+                                                                <li><i style={{fontSize:20}} className="fa fa-star-o"></i></li>
+                                                                <li><i style={{fontSize:20}} className="fa fa-star-o"></i></li>
+                                                                <li><i style={{fontSize:20}} className="fa fa-star-o"></i></li>
+                                                                <li><i style={{fontSize:20}} className="fa fa-star-o"></i></li>
+                                                                <li className="no-star"><i style={{fontSize:20}} className="fa fa-star-o"></i></li>
+                                                            </ul>
                                         </div>
                                         <div className="add_actions">
                                             <ul className="add-actions-link">

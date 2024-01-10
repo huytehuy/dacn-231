@@ -10,7 +10,7 @@ import NoteAPI from '../API/NoteAPI';
 import Detail_OrderAPI from '../API/Detail_OrderAPI';
 import CouponAPI from '../API/CouponAPI';
 
-const socket = io('https://hieusuper20hcm.herokuapp.com/', {
+const socket = io('https://dacn-231-t581.onrender.com/', {
     transports: ['websocket'], jsonp: false
 });
 socket.connect();

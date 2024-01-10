@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Global from '../Image/Global'
+import Global from '../Image/logo_ecommerce_website_806.jpg'
 
 Footer.propTypes = {
 
@@ -67,7 +67,7 @@ function Footer(props) {
                         <div className="row">
                             <div className="col-lg-4 col-md-6">
                                 <div className="footer-logo">
-                                    <img src={Global.Logo} style={{ width: '20rem'}} alt="Footer Logo" />
+                                    <img src={Global} style={{ width: '10rem'}} alt="Footer Logo" />
                                     <p className="info">
                                     e-commerce site
                                 </p>
@@ -75,11 +75,11 @@ function Footer(props) {
                                 <ul className="des">
                                     <li>
                                         <span>Address: </span>
-                                    666/61 đường 3/2, Quận 10, TP.HCM
+                                    268 Lý Thường Kiệt, Phường 14, Quận 10, TP.HCM
                                 </li>
                                     <li>
                                         <span>Phone: </span>
-                                        <a href="#">0366889853</a>
+                                        <a href="tel:0366889853">0366889853</a>
                                     </li>
                                     <li>
                                         <span>Email: </span>

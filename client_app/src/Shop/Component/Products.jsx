@@ -43,19 +43,19 @@ function Products(props) {
                                 <div className="product_desc_info">
                                     <div className="product-review">
                                         <h5 className="manufacturer">
-                                            <a href="product-details.html">{value.name_product}</a>
+                                            <a href="product-details.html">{value.gender}</a>
                                         </h5>
                                         <div className="rating-box">
                                             <ul className="rating">
                                                 <li><i className="fa fa-star-o"></i></li>
                                                 <li><i className="fa fa-star-o"></i></li>
                                                 <li><i className="fa fa-star-o"></i></li>
-                                                <li className="no-star"><i className="fa fa-star-o"></i></li>
-                                                <li className="no-star"><i className="fa fa-star-o"></i></li>
+                                                <li><i className="fa fa-star-o"></i></li>
+                                                <li><i className="fa fa-star-o"></i></li>
                                             </ul>
                                         </div>
                                     </div>
-                                    <h4><a className="product_name" href="single-product.html">Accusantium dolorem1</a></h4>
+                                    <Link to={`/detail/${value._id}`}><h4 style={{height:40,display:'flex',alignItems:'center'}}className='product_name'>{value.name_product}</h4></Link>
                                     <div className="price-box">
                                         <span className="new-price">{new Intl.NumberFormat('vi-VN',{style: 'decimal',decimal: 'VND'}).format(value.price_product)+ ' VNĐ'}</span>
                                     </div>

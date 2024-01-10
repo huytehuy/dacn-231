@@ -107,23 +107,22 @@ function Home_Product(props) {
                                             </div>
                                             <div className="product_desc">
                                                 <div className="product_desc_info">
-                                                    <div className="product-review">
-                                                        <h5 className="manufacturer">
-                                                            <a href="shop-left-sidebar.html">{value.name_product}</a>
+                                                    <div className="product-review" >
+                                                        <h5 className="manufacturer" style={{height:40,display:'flex',alignItems:'center'}}>
+                                                        <Link to={`/detail/${value._id}`}>{value.name_product}</Link>
                                                         </h5>
-                                                        <div className="rating-box">
-                                                            <ul className="rating">
-                                                                <li><i className="fa fa-star-o"></i></li>
-                                                                <li><i className="fa fa-star-o"></i></li>
-                                                                <li><i className="fa fa-star-o"></i></li>
-                                                                <li className="no-star"><i className="fa fa-star-o"></i></li>
-                                                                <li className="no-star"><i className="fa fa-star-o"></i></li>
-                                                            </ul>
-                                                        </div>
                                                     </div>
                                                     <div className="price-box">
-                                                        <span className="new-price">{new Intl.NumberFormat('vi-VN',{style: 'decimal',decimal: 'VND'}).format(value.price_product)+ ' VNĐ'}</span>
+                                                        <div className="new-price">{new Intl.NumberFormat('vi-VN',{style: 'decimal',decimal: 'VND'}).format(value.price_product)+ ' VNĐ'}</div>
+                                                        
                                                     </div>
+                                                            <ul className="rating" style={{marginTop:10}}>
+                                                                <li><i style={{fontSize:20}} className="fa fa-star-o"></i></li>
+                                                                <li><i style={{fontSize:20}} className="fa fa-star-o"></i></li>
+                                                                <li><i style={{fontSize:20}} className="fa fa-star-o"></i></li>
+                                                                <li><i style={{fontSize:20}} className="fa fa-star-o"></i></li>
+                                                                <li className="no-star"><i style={{fontSize:20}} className="fa fa-star-o"></i></li>
+                                                            </ul>
                                                 </div>
                                                 {/* <div className="add_actions">
                                                     <ul className="add-actions-link">                                                      

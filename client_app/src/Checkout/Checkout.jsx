@@ -12,8 +12,9 @@ import NoteAPI from '../API/NoteAPI';
 import Detail_OrderAPI from '../API/Detail_OrderAPI';
 import CouponAPI from '../API/CouponAPI';
 import MoMo from './MoMo.jsx'
+import LogoMomo from './momo-png/momo_icon_square_pinkbg_RGB.png'
 
-const socket = io('https://hieusuper20hcm.herokuapp.com/', {
+const socket = io('https://dacn-231-t581.onrender.com/', {
     transports: ['websocket'], jsonp: false
 });
 socket.connect();
@@ -226,22 +227,26 @@ function Checkout(props) {
         }
 
         // data email
-        // const data_email = {
-        //     id_order: response_order._id,
-        //     total: total_price,
-        //     fullname: information.fullname,
-        //     phone: information.phone,
-        //     price: price,
-        //     address: information.address,
-        //     email: information.email
-        // }
+        const data_email = {
+            id_order: response_order._id,
+            total: total_price,
+            fullname: information.fullname,
+            phone: information.phone,
+            feeship: price,
+            address: information.address,
+            email: information.email,
+            subtotal : total_price-price,
+            data_carts: data_carts,
+        }
 
         // Gửi socket lên server
         socket.emit('send_order', "Có người vừa đặt hàng")
         // Xử lý API Send Mail
 
-        // const send_mail = await OrderAPI.post_email(data_email)
-        // console.log(send_mail)
+        const send_mail = await OrderAPI.post_email(data_email)
+        console.log(send_mail)
+
+
 
         localStorage.removeItem('information')
         localStorage.removeItem('total_price')
@@ -259,11 +264,13 @@ function Checkout(props) {
 
     }
 
+
     const Change_Load_Order = (value) => {
 
         set_load_order(value)
 
     }
+
 
 
     //--------------- Xử lý Google API ------------------//
@@ -378,7 +385,7 @@ function Checkout(props) {
                                             </div>
                                         </div>
                                         <div className="col-md-12">
-                                            {/* <div className="checkout-form-list">
+                                            <div className="checkout-form-list">
                                                 <label>To <span className="required">*</span></label>
                                                 <input type="text"
                                                     id="to_places"
@@ -387,9 +394,9 @@ function Checkout(props) {
                                                     onChange={onChangeAddress} />
                                                 {error_address && <span style={{ color: 'red' }}>* Address is required</span>}
                                                 <input id="destination" name="destination" required="" type="hidden"/>
-                                            </div> */}
+                                            </div>
                                         </div>
-                                        {/* <div className="col-md-12">
+                                        <div className="col-md-12">
                                             <div className="checkout-form-list">
                                                 <div className="form-group">
                                                     <label>
@@ -402,16 +409,16 @@ function Checkout(props) {
                                                     </select>
                                                 </div>
                                             </div>
-                                        </div> */}
+                                        </div>
                                         <div className="col-md-12">
-                                            <div id="result" className="hide">
+                                            <div id="result" >
                                                 <div>
                                                     <label htmlFor="Kilometers">Kilometers: </label>&nbsp;
-                                                        <label id="in_kilo"></label>
+                                                        <label id="in_kilo">10</label>
                                                 </div>
                                                 <div>
                                                     <label htmlFor="Duration">Duration: </label>&nbsp;
-                                                        <label id="duration_text"></label>
+                                                        <label id="duration_text">10</label>
                                                 </div>
                                                 <div>
                                                     <label htmlFor="Price">Shipping Cost: </label>&nbsp;
@@ -443,11 +450,11 @@ function Checkout(props) {
   loading="lazy">
 </iframe>
                                 </div> */}
-                                <iframe src="https://storage.googleapis.com/maps-solutions-xhwbe320tj/commutes/gk0f/commutes.html"
+                                {/* <iframe src="https://storage.googleapis.com/maps-solutions-xhwbe320tj/commutes/gk0f/commutes.html"
   width="100%" height="100%"
 //   style="border:0;"
   loading="lazy">
-</iframe>
+</iframe> */}
                             </div>
 
                             
@@ -456,7 +463,7 @@ function Checkout(props) {
                     
                 }
                 {
-                    // load_order_status && (
+                    load_order_status && (
                         (
                         <div className="row">
                             <div className="col-lg-6 col-12 pb-5">
@@ -491,7 +498,7 @@ function Checkout(props) {
                                                         ref={register({ required: true })}
                                                         value={information.address}
                                                         onChange={onChangeAddress}
-                                                        disabled="true" />
+                                                        />
                                                     {errors.address && errors.address.type === "required" && <span style={{ color: 'red' }}>* Address is required</span>}
                                                 </div>
                                             </div>
@@ -597,7 +604,7 @@ function Checkout(props) {
                                                             {
                                                                 show_error ? 'Please Checking Information!' :
                                                                 <div>
-                                                                    <img src="https://developers.momo.vn/images/logo.png" width="50" onClick={handlerMomo}
+                                                                    <img src={LogoMomo} width="100" onClick={handlerMomo}
                                                                     style={{ cursor: 'pointer' }} />
                                                                     <MoMo 
                                                                         orderID={orderID}
@@ -608,12 +615,38 @@ function Checkout(props) {
                                                         </div>
                                                     </div>
                                                 </div>
+{/* 
+                                                <div className="card">                
+                                                <div className="card-header" id="#payment-3">
+                                                        <h5 className="panel-title">
+                                                            <a className="collapsed" data-toggle="collapse" data-target="#collapseMomo" aria-expanded="false" aria-controls="collapseMomo">
+                                                                MoMo
+                                                        </a>
+                                                        </h5>
+                                                    </div>
+                                                    <div id="collapseMomo" className="collapse">
+                                                        <div className="card-body">
+                                                            {
+                                                                show_error ? 'Please Checking Information!' :
+                                                                <div>
+                                                                    <img src={LogoMomo} width="100" onClick={handlerMomo}
+                                                                    style={{ cursor: 'pointer' }} />
+                                                                    <MoMo 
+                                                                        orderID={orderID}
+                                                                        total={total_price}
+                                                                        />
+                                                                </div>  
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div> */}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    )
                     )
                 }
             </div>

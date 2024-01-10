@@ -1,9 +1,9 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import Cart from '../API/CartAPI';
 import User from '../API/User';
-import logo from '../Image/1.jpg'
+import logo from '../Image/logo_ecommerce_website_806.jpg'
 import { addUser, deleteCart } from '../Redux/Action/ActionCart';
 import { changeCount } from '../Redux/Action/ActionCount';
 import { addSession, deleteSession } from '../Redux/Action/ActionSession';
@@ -20,6 +20,8 @@ function Header(props) {
     const [total_price, set_total_price] = useState(0)
     
     const [carts_mini, set_carts_mini] = useState([])
+
+    
 
     // Hàm này để khởi tạo localStorage dùng để lưu trữ giỏ hàng
     // Và nó sẽ chạy lần đầu
@@ -279,17 +281,17 @@ function Header(props) {
                     </div>
                 </div>
             </div>
-            <div className="header-middle pl-sm-0 pr-sm-0 pl-xs-0 pr-xs-0">
+            <div className="header-middle pl-sm-0 pr-sm-0 pl-xs-0 pr-xs-0 ">
                 <div className="container pb_header">
                     <div className="row">
                         <div className="col-lg-3">
                             <div className="logo pb-sm-30 pb-xs-30">
                                 <Link to="/">
-                                    <img src={logo} style={{ width: '13rem' }} />
+                                    <img src={logo} style={{ width: '5rem' }} />
                                 </Link>
                             </div>
                         </div>
-                        <div className="col-lg-9 pl-0 ml-sm-15 ml-xs-15 d-flex justify-content-between">
+                        <div className="col-lg-9 pl-0 ml-sm-15 ml-xs-15 d-flex justify-content-between align-items-center">
                             <form action="/search" className="hm-searchbox" onSubmit={handler_search}>
                                 <input type="text" placeholder="Enter your search key ..." value={keyword_search} onChange={(e) => set_keyword_search(e.target.value)} />
                                 <button className="li-btn" type="submit"><i className="fa fa-search"></i></button>
@@ -336,7 +338,7 @@ function Header(props) {
                                                                     <img src={value.image} alt="cart products" />
                                                                 </Link>
                                                                 <div className="minicart-product-details">
-                                                                    <h6><a>{value.name_product}</a></h6>
+                                                                    <h6><Link to={`/detail/${value.id_product}`}>{value.name_product}</Link></h6>
                                                                     <span>{new Intl.NumberFormat('vi-VN',{style: 'decimal',decimal: 'VND'}).format(value.price_product)+ ' VNĐ'} x {value.count}, {value.size}</span>
                                                                 </div>
                                                                 <a className="close" onClick={() => handler_delete_mini(value.id_cart)}>
@@ -370,7 +372,7 @@ function Header(props) {
 
                                             <li className="dropdown-holder"><Link to="/">Home</Link></li>
                                             <li className="megamenu-holder"><Link to="/shop/all">Menu</Link>
-                                                <ul class="megamenu hb-megamenu">
+                                                {/* <ul class="megamenu hb-megamenu">
                                                     <li><Link to="/shop/all">Male</Link>
                                                         <ul>
                                                             {
@@ -393,7 +395,7 @@ function Header(props) {
                                                             }
                                                         </ul>
                                                     </li>
-                                                </ul>
+                                                </ul> */}
                                             </li>
                                             <li><Link to="/event">Event</Link></li>
                                             <li><Link to="/contact">Contact</Link></li>

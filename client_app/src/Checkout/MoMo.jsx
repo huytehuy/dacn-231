@@ -21,7 +21,6 @@ function MoMo(props) {
 
     const { orderID, total } = props
 
-    console.log(orderID)
 
     useEffect(() => {
         const path = "https://test-payment.momo.vn/gw_payment/transactionProcessor"
@@ -29,7 +28,7 @@ function MoMo(props) {
         const accessKey = "XPBbArMut5PxmWiY"
         const serectkey = "uLb683H8g9dWuiyipZbLHgO6zjSDlVm5"
         const orderInfo = "Thanh toán MoMo"
-        const notifyurl = "http://https://dacn-231-t581.onrender.com/api/Payment/momo"
+        const notifyurl = "https://dacn-231-t581.onrender.com/api/Payment/momo"
         const returnUrl = "http://localhost:3000/momo"
         const amount = total.toString()
         const orderId = orderID
@@ -75,7 +74,7 @@ function MoMo(props) {
 
     return (
         <div>
-            {
+            {/* {
                 error &&
                 <div className="modal_success">
                     <div className="group_model_success pt-3">
@@ -85,7 +84,7 @@ function MoMo(props) {
                         <h4 className="text-center p-3" style={{ color: '#fff' }}>Lỗi thanh toán!!!</h4>
                     </div>
                 </div>
-            }
+            } */}
         </div>
     );
 }
