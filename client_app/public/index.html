@@ -3,11 +3,11 @@
 
 <head>
   <meta charset="utf-8" />
-  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <link rel="icon" href="./logo_ecommerce_website_806.jpg" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
   <meta name="description" content="Web site created using create-react-app" />
-  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <link rel="apple-touch-icon" href="./logo_ecommerce_website_806.jpg" />
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -28,11 +28,11 @@
     src="https://www.paypal.com/sdk/js?client-id=AZs1BwWM6IlHg7FFjBOURgGUuObrQmEKguSVbowu4ZqOuH7n2em2NBDmzBoQOqrUsgV-CVAsylOOB5ve"
     data-csp-nonce="xyz-123"></script>
 
-  <script defer
-    src="https://maps.googleapis.com/maps/api/js?libraries=places&language=en&key=%REACT_API_KEY%"
-    type="text/javascript"></script>
+    <script async defer
+  src="https://maps.googleapis.com/maps/api/js?libraries=places&language=en&key=AIzaSyBXHN85pL9MT2IoNZ9QROOLTKTrSe61wOU"
+  type="text/javascript"></script>
 
-  <title>React App</title>
+  <title>806 E-COMMERCE</title>
 </head>
 
 <body>
@@ -64,12 +64,18 @@
       // init or load map
       function initMap() {
         var myLatLng = {
-          lat: 10.7760195,
-          lng: 106.6652137,
+          lat: 10.7720056,
+          lng: 106.6579729,
         };
         map = new google.maps.Map(document.getElementById("map"), {
           zoom: 16,
           center: myLatLng,
+        });
+        var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          title: "Your Marker Title", // Optional: Add a title to the marker
+          icon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png", // Specify the URL of the red marker icon
         });
       }
 
@@ -154,12 +160,14 @@
           if (response.rows[0].elements[0].status === "ZERO_RESULTS") {
             $('#result').html("Sorry , not available to use this travel mode between " + origin + " and " + destination);
           } else {
+            console.log(response)
             var distance = response.rows[0].elements[0].distance;
             var duration = response.rows[0].elements[0].duration;
             var distance_in_kilo = distance.value / 1000; // the kilo meter
             var distance_in_mile = distance.value / 1609.34; // the mile
             var duration_text = duration.text;
             appendResults(distance_in_kilo, distance_in_mile, duration_text);
+
           }
         }
       }
@@ -170,11 +178,11 @@
         $('#in_kilo').html(distance_in_kilo.toFixed(2) + ' Km');
         $('#duration_text').html(duration_text);
         if (parseInt(Math.round(distance_in_kilo)) <= 5) {
-          $('#price_shipping').html('5000');
-        } else if (parseInt(Math.round(distance_in_kilo)) > 5 && parseInt(Math.round(distance_in_kilo)) <= 10) {
-          $('#price_shipping').html('10000');
-        } else {
           $('#price_shipping').html('15000');
+        } else if (parseInt(Math.round(distance_in_kilo)) > 5 && parseInt(Math.round(distance_in_kilo)) <= 10) {
+          $('#price_shipping').html('30000');
+        } else {
+          $('#price_shipping').html('50000');
         }
       }
 

@@ -24,12 +24,12 @@ function MoMo(props) {
 
     useEffect(() => {
         const path = "https://test-payment.momo.vn/gw_payment/transactionProcessor"
-        const partnerCode = "MOMOHMXO20210608"
-        const accessKey = "XPBbArMut5PxmWiY"
-        const serectkey = "uLb683H8g9dWuiyipZbLHgO6zjSDlVm5"
+        const partnerCode = "MOMOAE9T20220513"
+        const accessKey = "aCM4gfrPKBmFwNBa"
+        const serectkey = "S6rRbLSPkRXef39MVB0huuqNOPXVBW8c"
         const orderInfo = "Thanh toán MoMo"
         const notifyurl = "https://dacn-231-t581.onrender.com/api/Payment/momo"
-        const returnUrl = "http://localhost:3000/momo"
+        const returnUrl = "http://dacn-231.vercel.app/momo"
         const amount = total.toString()
         const orderId = orderID
         const requestType = "captureMoMoWallet"

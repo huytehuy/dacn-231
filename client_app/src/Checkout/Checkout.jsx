@@ -13,6 +13,7 @@ import Detail_OrderAPI from '../API/Detail_OrderAPI';
 import CouponAPI from '../API/CouponAPI';
 import MoMo from './MoMo.jsx'
 import LogoMomo from './momo-png/momo_icon_square_pinkbg_RGB.png'
+// import GoogleMap from '../GoogleMap/index'
 
 const socket = io('https://dacn-231-t581.onrender.com/', {
     transports: ['websocket'], jsonp: false
@@ -41,6 +42,7 @@ function Checkout(props) {
     const [load_order_status, set_load_order_status] = useState(false)
 
     const [check_action, set_check_action] = useState(false)
+
 
 
     useEffect(() => {
@@ -275,6 +277,8 @@ function Checkout(props) {
 
     //--------------- Xử lý Google API ------------------//
 
+    
+
     const [error_address, set_error_address] = useState(false)
 
     const [from, set_from] = useState('268 Lý Thường Kiệt, Phường 14, District 10, Ho Chi Minh City, Vietnam')
@@ -316,9 +320,9 @@ function Checkout(props) {
         set_duration(1)
 
         // localStorage.setItem('price', price_shipping)
-        localStorage.setItem('price', 10000)
+        localStorage.setItem('price', price_shipping)
         // set_price(price_shipping)
-        set_price(10000)
+        set_price(price_shipping)
 
         set_information({
             fullname: information.fullname,
@@ -411,14 +415,14 @@ function Checkout(props) {
                                             </div>
                                         </div>
                                         <div className="col-md-12">
-                                            <div id="result" >
+                                            <div id="result" className='hide' >
                                                 <div>
-                                                    <label htmlFor="Kilometers">Kilometers: </label>&nbsp;
-                                                        <label id="in_kilo">10</label>
+                                                    <label htmlFor="Kilometers">Kilometers:</label>&nbsp;
+                                                        <label id="in_kilo">0</label>
                                                 </div>
                                                 <div>
                                                     <label htmlFor="Duration">Duration: </label>&nbsp;
-                                                        <label id="duration_text">10</label>
+                                                        <label id="duration_text">0</label>
                                                 </div>
                                                 <div>
                                                     <label htmlFor="Price">Shipping Cost: </label>&nbsp;
@@ -442,19 +446,16 @@ function Checkout(props) {
                                     </div>
                                 </div>
                             </div>
+                            {/* <MapIframeComponent/> */}
                             <div className="col-lg-6 col-12">
-                                {/* <div id="map" style={{ height: '400px', width: '500px' }}>
-                                    <iframe src="https://storage.googleapis.com/maps-solutions-xhwbe320tj/commutes/gk0f/commutes.html"
+                            <div id="map" style={{ height: '400px', width: '500px' }}></div>
+                            {/* <iframe src="https://storage.googleapis.com/maps-solutions-2qm1w3hy9s/commutes/qop2/commutes.html"
   width="100%" height="100%"
-//   style="border:0;"
-  loading="lazy">
-</iframe>
-                                </div> */}
-                                {/* <iframe src="https://storage.googleapis.com/maps-solutions-xhwbe320tj/commutes/gk0f/commutes.html"
-  width="100%" height="100%"
-//   style="border:0;"
   loading="lazy">
 </iframe> */}
+
+
+
                             </div>
 
                             
@@ -498,6 +499,7 @@ function Checkout(props) {
                                                         ref={register({ required: true })}
                                                         value={information.address}
                                                         onChange={onChangeAddress}
+                                                        disabled
                                                         />
                                                     {errors.address && errors.address.type === "required" && <span style={{ color: 'red' }}>* Address is required</span>}
                                                 </div>
@@ -517,7 +519,7 @@ function Checkout(props) {
                                                     {
                                                         redirect && <Redirect to="/success" />
                                                     }
-                                                    <input value="Place order" type="submit" />
+                                                    <input value="pay with cash" type="submit" />
                                                 </div>
                                             </div>
                                         </div>
@@ -572,7 +574,7 @@ function Checkout(props) {
                                                 </a>
                                                         </h5>
                                                     </div>
-                                                    <div id="collapseThree" className="collapse">
+                                                    <div>
                                                         <div className="card-body">
                                                             {
                                                                 show_error ? 'Please Checking Information!' :
@@ -594,12 +596,12 @@ function Checkout(props) {
                                                 <div className="card">
                                                     <div className="card-header" id="#payment-3">
                                                         <h5 className="panel-title">
-                                                            <a className="collapsed" data-toggle="collapse" data-target="#collapseMomo" aria-expanded="false" aria-controls="collapseMomo">
+                                                            <a className="collapsed" data-toggle="collapse" data-target="#collapseMomo" aria-expanded="true" aria-controls="collapseMomo">
                                                                 MoMo
                                                         </a>
                                                         </h5>
                                                     </div>
-                                                    <div id="collapseMomo" className="collapse">
+                                                    <div>
                                                         <div className="card-body">
                                                             {
                                                                 show_error ? 'Please Checking Information!' :

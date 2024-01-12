@@ -1,6 +1,7 @@
-import React, { useEffect, useMemo, useState} from 'react';
+import React, { useEffect, useMemo, useState, useRef} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
+import { Link} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Cart from '../API/CartAPI';
 import User from '../API/User';
 import logo from '../Image/logo_ecommerce_website_806.jpg'
@@ -11,6 +12,9 @@ import queryString from 'query-string'
 import Product from '../API/Product';
 import { addSearch } from '../Redux/Action/ActionSearch';
 import CartsLocal from './CartsLocal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
+import './styles.css';
 
 function Header(props) {
 
@@ -232,55 +236,51 @@ function Header(props) {
 
     }
 
+
+    const [isCartVisible, setCartVisible] = useState(false);
+    const [isUserVisible, setUserVisible] = useState(false);
+    const cartRef = useRef(null);
+    const userRef = useRef(null);
+  
+    useEffect(() => {
+      const handleClickOutside = (event) => {
+        if (cartRef.current && !cartRef.current.contains(event.target)) {
+          // Clicked outside the mini cart
+          setCartVisible(false);
+        }
+        if (userRef.current && !userRef.current.contains(event.target)) {
+            // Clicked outside the mini cart
+            setUserVisible(false);
+          }
+      };
+  
+      if (isCartVisible||isUserVisible) {
+        document.addEventListener('click', handleClickOutside);
+      }
+  
+      return () => {
+        document.removeEventListener('click', handleClickOutside);
+      };
+    }, [isCartVisible,isUserVisible]);
+  
+    const toggleCartVisibility = () => {
+      setCartVisible(!isCartVisible);
+    };
+    const toggleUserVisibility = () => {
+        if(active_user===true)
+        setUserVisible(!isUserVisible);
+    };
+
+    const history = useHistory();
+
+    const handleSignInClick = () => {
+      // Use history.push to navigate to the "/signin" route
+      localStorage.setItem('history',history.location.pathname)
+      history.push('/signin');
+    }
+
     return (
         <header>
-            <div className="header-top">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-3 col-md-4">
-                            <li><span>Telephone Enquiry:</span><a href="#">(+84) 366 889 853</a></li>
-                        </div>
-                        <div className="col-lg-9 col-md-8">
-                            <ul className="d-flex justify-content-end" >
-                                <li>
-                                    <div className="ht-setting-trigger">
-                                        {
-                                            active_user ? (
-                                                <span
-                                                    data-toggle="collapse"
-                                                    data-target="#collapseExample"
-                                                    aria-expanded="false"
-                                                    aria-controls="collapseExample">{user.fullname}</span>) : (
-                                                <span
-                                                    className='text-black'
-                                                    data-toggle="collapse"
-                                                    data-target="#collapseExample"
-                                                    aria-expanded="false"
-                                                    aria-controls="collapseExample"><Link to="/signin">Sign In</Link></span>
-                                            )
-                                        }
-                                    </div>
-                                    <div className="ul_setting">
-                                        {active_user ? (
-                                            <ul className="setting_ul collapse" id="collapseExample">
-                                                <li className="li_setting"><Link to={`/profile/${sessionStorage.getItem("id_user")}`}>Profile</Link></li>
-                                                <li className="li_setting"><Link to="/history">Order Status</Link></li>
-                                                <li className="li_setting"><a onClick={handler_logout} href="#">Log Out</a></li>
-                                            </ul>
-                                        ) : (
-                                            // <ul className="setting_ul collapse" id="collapseExample">
-                                            //     <li className="li_setting"><Link to="/signin">Sign In</Link></li>
-                                            // </ul>
-                                            <></>
-                                        )}
-
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div className="header-middle pl-sm-0 pr-sm-0 pl-xs-0 pr-xs-0 ">
                 <div className="container pb_header">
                     <div className="row">
@@ -314,7 +314,7 @@ function Header(props) {
                                     </div>
                                 }
                             </form>
-                            <div className="header-middle-right">
+                            <div className="header-middle-right" onClick={toggleCartVisibility}>
                                 <ul className="hm-menu">
                                     <li className="hm-wishlist d-flex">
                                         <li className="hm-minicart">
@@ -329,7 +329,9 @@ function Header(props) {
                                                 </span>
                                             </div>
                                             <span></span>
-                                            <div className="minicart collapse" id="collapse_carts">
+                                            
+                                            {isCartVisible && (
+                                                <div className="minicart" ref={cartRef}>
                                                 <ul className="minicart-product-list">
                                                     {
                                                         carts_mini && carts_mini.map((value, index) => (
@@ -339,7 +341,7 @@ function Header(props) {
                                                                 </Link>
                                                                 <div className="minicart-product-details">
                                                                     <h6><Link to={`/detail/${value.id_product}`}>{value.name_product}</Link></h6>
-                                                                    <span>{new Intl.NumberFormat('vi-VN',{style: 'decimal',decimal: 'VND'}).format(value.price_product)+ ' VNĐ'} x {value.count}, {value.size}</span>
+                                                                    <span>{new Intl.NumberFormat('vi-VN',{style: 'decimal',decimal: 'VND'}).format(value.price_product)+ ' VNĐ'} x {value.count}</span>
                                                                 </div>
                                                                 <a className="close" onClick={() => handler_delete_mini(value.id_cart)}>
                                                                     <i className="fa fa-close"></i>
@@ -354,7 +356,9 @@ function Header(props) {
                                                         <span>View Full Cart</span>
                                                     </Link>
                                                 </div>
-                                            </div>
+                                                </div>
+                                            )}
+                                            {/* {MiniCart(carts_mini, total_price, handler_delete_mini)} */}
                                         </li>
                                     </li>
                                 </ul>
@@ -366,7 +370,7 @@ function Header(props) {
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-12">
-                                <div className="hb-menu">
+                                <div className="hb-menu" style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
                                     <nav>
                                         <ul>
 
@@ -399,11 +403,44 @@ function Header(props) {
                                             </li>
                                             <li><Link to="/event">Event</Link></li>
                                             <li><Link to="/contact">Contact</Link></li>
-                                        </ul>
-
+                                        </ul> 
                                     </nav>
-                                </div>
+                                    <div >
+                                        <div className="d-flex justify-content-end username" onClick={toggleUserVisibility} style={{position:'relative',cursor:'pointer'}}>
+                                            <div>
+                                            {
+                                            active_user ? (
+                                                <div style={{display:'flex',alignItems:'center'}}>
+                                                 <FontAwesomeIcon icon={faUser} fontSize={20} style={{marginRight:10}} />{user.fullname}</div>) : (
+                                                        <div className="hb-menu">
+                                                            <nav>
+                                                            <ul>
+                                                                <li onClick={()=>handleSignInClick()}>SIGN IN</li>
+                                                            </ul>
+                                                            </nav>
+                                                            </div>
+                                            )
+                                            }
+                                            </div>
+                                            
+                                            {isUserVisible&& active_user &&
+                                            (
+                                            <div className="ul_setting" ref={userRef}>
+                                            <ul style={{width:100}} className='dropdown' >
+                                                <li className="li_setting"><Link to={`/profile/${sessionStorage.getItem("id_user")}`} className="li_setting">PROFILE</Link></li>
+                                                <li className="li_setting"><Link to="/history" className="li_setting">ORDER STATUS</Link></li>
+                                                <li className="li_setting"><a onClick={handler_logout}>LOG OUT</a></li>
+                                            </ul>
+                                            </div>
+                                            )}
+
+                                            
+                                        </div>
+                                    </div>
+                                    
                             </div>
+                                
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -411,5 +448,4 @@ function Header(props) {
         </header>
     );
 }
-
 export default Header;

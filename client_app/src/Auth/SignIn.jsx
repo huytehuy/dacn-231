@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect} from 'react-router-dom';
 import queryString from 'query-string'
 import User from '../API/User';
 import { useDispatch, useSelector } from 'react-redux';
@@ -23,7 +23,6 @@ function SignIn(props) {
     const [error_password, set_error_password] = useState(false)
 
     const [redirect, set_redirect] = useState(false)
-
     // Get carts từ redux khi user chưa đăng nhập
     const carts = useSelector(state => state.Cart.listCart)
 
@@ -74,6 +73,7 @@ function SignIn(props) {
 
     }
 
+
     return (
         <div>
             <div className="breadcrumb-area">
@@ -118,7 +118,7 @@ function SignIn(props) {
                                         </div>
                                         <div className="col-md-12">
                                             {
-                                                redirect && <Redirect to="/" />
+                                                redirect && <Redirect to={localStorage.getItem('history')}/>
                                             }
                                             <button className="register-button mt-0" style={{ cursor: 'pointer'}} onClick={handler_signin}>Login</button>
                                         </div>

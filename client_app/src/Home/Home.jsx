@@ -13,6 +13,7 @@ import { changeCount } from '../Redux/Action/ActionCount';
 import { useDispatch, useSelector } from 'react-redux';
 import CartsLocal from '../Share/CartsLocal';
 import SaleAPI from '../API/SaleAPI';
+import ChatGpt from '../ChatGPT/script';
 // import { Checkbox } from '@mantine/core';
 Home.propTypes = {
 
@@ -100,11 +101,11 @@ function Home(props) {
         <div className="container">
             <div className="slider-with-banner">
                 <div className="row">
-                    <div className="col-lg-8 col-md-8">
+                    <div className="col-lg-12 col-md-12">
                         <div>
                             <div className="carousel-inner">
-                                <div className="single-slide align-center-left animation-style-01 bg-1"
-                                    style={{ backgroundImage: `url(https://cdn.shopify.com/s/files/1/2598/6284/files/3rd_Banner_5_1600x.jpg?v=1593522251)` }}>
+                                <div className="single-slide align-center-left animation-style-01 bg-1" 
+                                    style={{ backgroundImage: `url(https://theme.hstatic.net/1000248237/1000325770/14/slideshow_4.jpg?v=31)`}}>
                                     <div className="slider-progress"></div>
 
                                 </div>
@@ -112,18 +113,20 @@ function Home(props) {
                             </div>
                         </div>
                     </div>
-                    <div className="col-lg-4 col-md-4 text-center pt-xs-30">
+                    {/* <div className="col-lg-4 col-md-4 text-center pt-xs-30">
                         <div className="li-banner">
                             <a href="#">
-                                <img src="https://img3.thuthuatphanmem.vn/uploads/2019/10/14/banner-fashion_113854663.jpg" alt="" />
+                                <img src="https://tongkhodogiadung.vn/wp-content/uploads/2021/07/banner.jpg" alt="" />
                             </a>
                         </div>
-                        <div className="li-banner mt-15 mt-sm-30 mt-xs-30">
+                    </div> */}
+                    {/* <div className="col-lg-4 col-md-4 text-center pt-xs-30">
+                    <div className="li-banner mt-15 mt-sm-30 mt-xs-30">
                             <a href="#">
-                                <img src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/114148366/original/624c3d3004215425a321fa7378f0228beb349e65/do-shopify-store-banner-header-and-slider-image-design-1906.png" alt="" />
+                                <img src="https://kangaroovietnam.vn/Uploads/banner-slide-sale-1212.png" alt="" />
                             </a>
                         </div>
-                    </div>
+                        </div> */}
                 </div>
             </div>
 
@@ -136,14 +139,19 @@ function Home(props) {
                         <div className="col-lg-4 col-md-4 text-center">
                             <div className="single-banner">
                                 <a href="#">
-                                    <img src="https://image.freepik.com/free-vector/fashion-banner-design-with-shirt-bag-camera-case_83728-1865.jpg" alt="Li's Static Banner" />
+                                    <img style={{height:340}} src="https://img.freepik.com/free-photo/sale-with-special-discount-vr-glasses_23-2150040388.jpg?size=626&ext=jpg&ga=GA1.1.1497148693.1705063387&semt=ais" alt="Li's Static Banner" />
                                 </a>
                             </div>
                         </div>
                         <div className="col-lg-4 col-md-4 text-center pt-xs-30">
+                            <div className="single-banner" style={{marginBottom:15}}>
+                                <a href="#">
+                                    <img style={{height:190}}src="https://alaskavietnam.org/wp-content/uploads/2020/08/banner-alaska-tu-dong-2020-02.jpg" alt="Li's Static Banner" />
+                                </a>
+                            </div>
                             <div className="single-banner">
                                 <a href="#">
-                                    <img src="https://image.freepik.com/free-vector/fashion-sale-banner-collection_23-2148161688.jpg" alt="Li's Static Banner" />
+                                    <img src="https://dienlanhhanoi.net.vn/wp-content/uploads/2023/04/sua-tu-lanh-hitachi-2.jpg" alt="Li's Static Banner" />
                                 </a>
                             </div>
                         </div>
@@ -162,6 +170,9 @@ function Home(props) {
             <Home_Product gender={`Female`} category={'655a1fc0a456ecf4093e1e6f'} GET_id_modal={GET_id_modal} />
             <Home_Product gender={`Kitchen`} category={'655a1fc0a456ecf4093e1e6q'} GET_id_modal={GET_id_modal} /> */}
             {/* {product&&product.filter((item, index) => product.indexOf(item) === index)} */}
+
+
+            {/* <ChatGpt/> */}
 
 
 {/* 

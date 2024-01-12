@@ -23,7 +23,7 @@ function OrderMomo(props) {
         const price = localStorage.getItem('price')
 
         const fetchData = async () => {
-            const serectkey = "uLb683H8g9dWuiyipZbLHgO6zjSDlVm5"
+            const serectkey = "S6rRbLSPkRXef39MVB0huuqNOPXVBW8c"
             const accessKey = new URLSearchParams(search).get('accessKey')
             const amount = new URLSearchParams(search).get('amount')
             const extraData = new URLSearchParams(search).get('extraData')

@@ -101,7 +101,6 @@ function DetailHistory(props) {
                                                 <th className="li-product-thumbnail">Name Product</th>
                                                 <th className="cart-product-name">Price</th>
                                                 <th className="li-product-price">Count</th>
-                                                <th className="li-product-price">Size</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -112,7 +111,6 @@ function DetailHistory(props) {
                                                         <td className="li-product-name"><a href={`${baseURL}/detail/${value.id_product._id}`}>{value.name_product}</a></td>
                                                         <td className="li-product-price"><span className="amount">{new Intl.NumberFormat('vi-VN',{style: 'decimal',decimal: 'VND'}).format(value.price_product) + ' VNĐ'}</span></td>
                                                         <td className="li-product-price"><span className="amount">{value.count}</span></td>
-                                                        <td className="li-product-price"><span className="amount">{value.size}</span></td>
                                                     </tr>
                                                 ))
                                             }

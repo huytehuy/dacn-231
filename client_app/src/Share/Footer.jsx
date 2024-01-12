@@ -69,7 +69,7 @@ function Footer(props) {
                                 <div className="footer-logo">
                                     <img src={Global} style={{ width: '10rem'}} alt="Footer Logo" />
                                     <p className="info">
-                                    e-commerce site
+                                    E-COMMERCE SITE
                                 </p>
                                 </div>
                                 <ul className="des">

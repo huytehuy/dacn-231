@@ -1,0 +1,25 @@
+/* styles.css */
+
+.ul_setting {
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    z-index: 1000;
+    position: absolute;
+    top: 36px;
+    left: 40px;
+    width: 160px;
+    background-color: #fefe; /* Default background color */
+  }
+  .li_setting:hover,.username:hover{
+    color: white;
+
+  }
+  .li_setting,.username{
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 140px;
+  }
+  
