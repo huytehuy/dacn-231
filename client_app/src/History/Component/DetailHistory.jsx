@@ -17,7 +17,7 @@ function DetailHistory(props) {
     const [detail_order, set_detail_order] = useState([])
 
     const [note, set_note] = useState({})
-    const baseURL = 'https://dacn-231.vercel.app';
+    const baseURL = 'http://localhost:3000';
 
     useEffect(() => {
 
@@ -41,7 +41,7 @@ function DetailHistory(props) {
     return (
         <div>
             <div className="container" style={{ paddingTop: '3rem' }}>
-                <h1>Thông Tin Chi Tiết Đơn Hàng</h1>
+                <h1>Order Details</h1>
                 <ul>
                     <li style={{ fontSize: '1.1rem' }}>ID Invoice: <span>{order._id}</span></li>
                     <li style={{ fontSize: '1.1rem' }}>Phone: <span>{order.id_note && order.id_note.phone}</span></li>

@@ -108,35 +108,17 @@ function Shop(props) {
 
 
     const [male, set_male] = useState([])
-    const [female, set_female] = useState([])
 
     // Gọi API theo phương thức GET để load category
     useEffect(() => {
 
         const fetchData = async () => {
 
-            // gender = male
-            const params_male = {
-                gender: 'Male'
-            }
-
-            const query_male = '?' + queryString.stringify(params_male)
-
+            const query_male = '?'+queryString.stringify('kitchen')
+            console.log(query_male)
             const response_male = await Product.Get_Category_Gender(query_male)
-
+            console.log(response_male)
             set_male(response_male)
-
-            // gender = female
-            const params_female = {
-                gender: 'female'
-            }
-
-            const query_female = '?' + queryString.stringify(params_female)
-
-            const response_female = await Product.Get_Category_Gender(query_female)
-
-            set_female(response_female)
-
         }
 
         fetchData()
@@ -192,49 +174,22 @@ function Shop(props) {
                                     </div>
                                 </div>
                                 <div className="li-blog-sidebar pt-25">
-                                    <h4 className="li-blog-sidebar-title">All Product</h4>
                                     <ul className="li-blog-archive">
-                                        <li><Link to="/shop/all" style={id === 'all' ? { cursor: 'pointer', color: '#fed700' } : { cursor: 'pointer' }}>All</Link></li>
+                                    <h4 className="li-blog-sidebar-title"><li><Link to="/shop/all" style={id === 'all' ? { cursor: 'pointer', color: '#fed700' } : { cursor: 'pointer' }}>All</Link></li></h4>
                                     </ul>
                                 </div>
                                 <div className="li-blog-sidebar pt-25">
-                                    <h4 className="li-blog-sidebar-title">Male</h4>
                                     <ul className="li-blog-archive">
                                         {
                                             male && male.map(value => (
                                                 <li key={value._id}>
-                                                    <Link to={`/shop/${value._id}`} style={id === value._id ? { cursor: 'pointer', color: '#fed700' } : { cursor: 'pointer' }}>{value.category}</Link>
-                                                </li>
-                                            ))
-                                        }
-                                    </ul>
-                                </div>
-                                <div className="li-blog-sidebar">
-                                    <h4 className="li-blog-sidebar-title">Female</h4>
-                                    <ul className="li-blog-archive">
-                                        {
-                                            female && female.map(value => (
-                                                <li key={value._id}>
-                                                    <Link to={`/shop/${value._id}`} style={id === value._id ? { cursor: 'pointer', color: '#fed700' } : { cursor: 'pointer' }}>{value.category}</Link>
+                                                    <h4 className="li-blog-sidebar-title"><Link to={`/shop/${value._id}`} style={id === value._id ? { cursor: 'pointer', color: '#fed700' } : { cursor: 'pointer' }}>{value.category}</Link></h4>
                                                 </li>
                                             ))
                                         }
                                     </ul>
                                 </div>
 
-
-                                <div className="li-blog-sidebar">
-                                <h4 className="li-blog-sidebar-title">abc</h4>
-                                    <ul className="li-blog-archive">
-                                        {
-                                            female && female.map(value => (
-                                                <li key={value._id}>
-                                                    <Link to={`/shop/${value._id}`} style={id === value._id ? { cursor: 'pointer', color: '#fed700' } : { cursor: 'pointer' }}>{value.category}</Link>
-                                                </li>
-                                            ))
-                                        }
-                                    </ul>
-                                </div>
 
 
                             </div>

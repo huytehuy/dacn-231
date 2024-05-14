@@ -143,7 +143,7 @@ function Home(props) {
                                 </a>
                             </div>
                         </div>
-                        <div className="col-lg-4 col-md-4 text-center pt-xs-30">
+                        {/* <div className="col-lg-4 col-md-4 text-center pt-xs-30">
                             <div className="single-banner" style={{marginBottom:15}}>
                                 <a href="#">
                                     <img style={{height:190}}src="https://alaskavietnam.org/wp-content/uploads/2020/08/banner-alaska-tu-dong-2020-02.jpg" alt="Li's Static Banner" />
@@ -154,7 +154,7 @@ function Home(props) {
                                     <img src="https://dienlanhhanoi.net.vn/wp-content/uploads/2023/04/sua-tu-lanh-hitachi-2.jpg" alt="Li's Static Banner" />
                                 </a>
                             </div>
-                        </div>
+                        </div> */}
                         <div className="col-lg-4 col-md-4 text-center pt-xs-30">
                             <div className="single-banner">
                                 <a href="#">
@@ -165,10 +165,12 @@ function Home(props) {
                     </div>
                 </div>
             </div>
-            {Array.from(new Set(productTemp)).map((index,value)=><Home_Product gender={index} category={index} GET_id_modal={GET_id_modal} />)}
-            {/* <Home_Product gender={`Male`} category={'655a1fc0a456ecf4093e1e6f'} GET_id_modal={GET_id_modal} />
-            <Home_Product gender={`Female`} category={'655a1fc0a456ecf4093e1e6f'} GET_id_modal={GET_id_modal} />
-            <Home_Product gender={`Kitchen`} category={'655a1fc0a456ecf4093e1e6q'} GET_id_modal={GET_id_modal} /> */}
+            {/* {Array.from(new Set(productTemp)).map((index,value)=><Home_Product gender={index} category={index} GET_id_modal={GET_id_modal} />)} */}
+            <Home_Product gender={`Nhà bếp`} category={'655a1c5423f28980f81145c7'} GET_id_modal={GET_id_modal} />
+            <Home_Product gender={`Tủ lạnh`} category={'65a2232ac177c63bbf7896c9'} GET_id_modal={GET_id_modal} />
+            <Home_Product gender={`Ti vi`} category={'65a2238ec177c63bbf794e27'} GET_id_modal={GET_id_modal} />
+            <Home_Product gender={`Máy giặt`} category={'65a223ebc177c63bbf7a11bc'} GET_id_modal={GET_id_modal} />
+            {/* <Home_Product gender={`Kitchen`} category={'655a1fc0a456ecf4093e1e6q'} GET_id_modal={GET_id_modal} /> */}
             {/* {product&&product.filter((item, index) => product.indexOf(item) === index)} */}
 
 

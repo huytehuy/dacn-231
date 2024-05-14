@@ -28,8 +28,8 @@
     src="https://www.paypal.com/sdk/js?client-id=AZs1BwWM6IlHg7FFjBOURgGUuObrQmEKguSVbowu4ZqOuH7n2em2NBDmzBoQOqrUsgV-CVAsylOOB5ve"
     data-csp-nonce="xyz-123"></script>
 
-    <script async defer
-  src="https://maps.googleapis.com/maps/api/js?libraries=places&language=en&key=AIzaSyBXHN85pL9MT2IoNZ9QROOLTKTrSe61wOU"
+    <script defer
+  src="https://maps.googleapis.com/maps/api/js?libraries=places&language=en&key=AIzaSyDKBXCYNxWEFpwnOPtBm_gpTux3qQn9Cxw"
   type="text/javascript"></script>
 
   <title>806 E-COMMERCE</title>
@@ -146,11 +146,11 @@
       // save distance results
       function save_results(response, status) {
 
-        // $("#result").removeClass("hide");
+        $("#result").removeClass("hide");
 
-        // document.getElementById('in_kilo').innerHTML = '2.15 Km'
-        // document.getElementById('duration_text').innerHTML = '20 mins'
-        // document.getElementById('price_shipping').innerHTML = '5'
+        document.getElementById('in_kilo').innerHTML = '2.15 Km'
+        document.getElementById('duration_text').innerHTML = '20 mins'
+        document.getElementById('price_shipping').innerHTML = '25000'
 
         if (status != google.maps.DistanceMatrixStatus.OK) {
           $('#result').html(err);

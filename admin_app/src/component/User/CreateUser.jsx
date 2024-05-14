@@ -144,7 +144,6 @@ function CreateUser(props) {
                                         <label htmlFor="categories" className="mr-2">Chọn quyền:</label>
                                         <select name="categories" id="categories" value={permissionChoose} onChange={(e) => setPermissionChoose(e.target.value)}>
                                             <option>Chọn quyền</option>
-                                            <option>Admin</option>
                                             {
                                                 permission && permission.map((item, index) => (
                                                     <option value={item._id} key={index} >{item.permission}</option>

@@ -14,7 +14,9 @@ import { addSearch } from '../Redux/Action/ActionSearch';
 import CartsLocal from './CartsLocal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
+import {isMobile} from 'react-device-detect';
 import './styles.css';
+
 
 function Header(props) {
 
@@ -214,7 +216,7 @@ function Header(props) {
     const search_header = useMemo(() => {
 
         const new_data = products.filter(value => {
-            return value.name_product.toUpperCase().indexOf(keyword_search.toUpperCase()) !== -1
+            return value?.name_product?.toUpperCase().indexOf(keyword_search.toUpperCase()) !== -1
         })
 
         return new_data
@@ -291,8 +293,8 @@ function Header(props) {
                                 </Link>
                             </div>
                         </div>
-                        <div className="col-lg-9 pl-0 ml-sm-15 ml-xs-15 d-flex justify-content-between align-items-center">
-                            <form action="/search" className="hm-searchbox" onSubmit={handler_search}>
+                        {!isMobile&&<div className="col-lg-9 pl-0 ml-sm-15 ml-xs-15 d-flex justify-content-between align-items-center">
+                            <form action="/search" className="hm-searchbox" style={{width:"50px"}} onSubmit={handler_search}>
                                 <input type="text" placeholder="Enter your search key ..." value={keyword_search} onChange={(e) => set_keyword_search(e.target.value)} />
                                 <button className="li-btn" type="submit"><i className="fa fa-search"></i></button>
                                 {
@@ -314,10 +316,10 @@ function Header(props) {
                                     </div>
                                 }
                             </form>
-                            <div className="header-middle-right" onClick={toggleCartVisibility}>
-                                <ul className="hm-menu">
-                                    <li className="hm-wishlist d-flex">
-                                        <li className="hm-minicart">
+                            <div className="ml-15 header-middle-right d-flex justify-content-between align-items-center" onClick={toggleCartVisibility}>
+                                <ul className="hm-menu d-flex justify-content-between align-items-center">
+                                    <li className="hm-wishlist d-flex justify-content-between align-items-center">
+                                        <li className="hm-minicart d-flex">
                                             <div className="hm-minicart-trigger"
                                                 data-toggle="collapse"
                                                 data-target="#collapse_carts"
@@ -358,12 +360,11 @@ function Header(props) {
                                                 </div>
                                                 </div>
                                             )}
-                                            {/* {MiniCart(carts_mini, total_price, handler_delete_mini)} */}
                                         </li>
                                     </li>
                                 </ul>
                             </div>
-                        </div>
+                        </div>}
                     </div>
                 </div>
                 <div className={header_navbar}>

@@ -10,14 +10,14 @@ import {
 } from '@chatscope/chat-ui-kit-react';
 import './styles.css';
 
-const API_KEY ="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"
+const API_KEY ="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"
 
 const App = () => {
   const [messages, setMessages] = useState([
     {
       message: "Hello, I'm 806 E-COMMERCE CHATBOT! Ask me anything!",
       sentTime: "just now",
-      sender: "ChatGPT",
+      sender: "806 E-COMMERCE CHATBOT",
     },
   ]);
   const [isTyping, setIsTyping] = useState(false);
@@ -68,7 +68,7 @@ const App = () => {
       if (content) {
         const chatGPTResponse = {
           message: content,
-          sender: 'ChatGPT',
+          sender: '806 E-COMMERCE CHATBOT',
         };
         // Update state immediately
         setMessages((prevMessages) => [...prevMessages, chatGPTResponse]);
@@ -84,14 +84,14 @@ const App = () => {
 
   async function processMessageToChatGPT(chatMessages) {
     const apiMessages = chatMessages.map((messageObject) => {
-      const role = messageObject.sender === "ChatGPT" ? "assistant" : "user";
+      const role = messageObject.sender === "806 E-COMMERCE CHATBOT" ? "assistant" : "user";
       return { role, content: messageObject.message };
     });
 
     const apiRequestBody = {
       "model": "gpt-3.5-turbo",
       "messages": [
-        { role: "system", content: "I'm a Student using ChatGPT for learning" },
+        { role: "system", content: "I'm a Student using 806 E-COMMERCE CHATBOT  for learning" },
         ...apiMessages,
       ],
     };
@@ -111,7 +111,7 @@ const App = () => {
   const memoizedMessageList = useMemo(() => (
     <MessageList 
       scrollBehavior="smooth" 
-      typingIndicator={isTyping ? <TypingIndicator content="ChatGPT is typing" /> : null}
+      typingIndicator={isTyping ? <TypingIndicator content="806 E-COMMERCE CHATBOT is typing" /> : null}
     >
       {messages.map((message, i) => (
         <Message key={i} model={message} />

@@ -92,8 +92,8 @@ function Home_Category(props) {
                             <div className="col-lg-12 animate__animated animate__zoomIn col_product" style={{ zIndex: '999', height: '30rem' }} key={value._id}>
                                 <div className="single-product-wrap">
                                     <div className="product-image">
-                                        <Link to={`/detail/${value.id_product._id}`}>
-                                            <img src={value.id_product.image} alt="Li's Product Image" />
+                                        <Link to={`/detail/${value.id_product?._id}`}>
+                                            <img src={value.id_product?.image} alt="Li's Product Image" />
                                         </Link>
                                         <span className="sticker">-{value.promotion}%</span>
                                     </div>
@@ -101,15 +101,15 @@ function Home_Category(props) {
                                         <div className="product_desc_info">
                                             <div className="product-review">
                                                 <h5 className="manufacturer" style={{height:40,display:'flex',alignItems:'center'}}>
-                                                <Link to={`/detail/${value.id_product._id}`}>{value.id_product.name_product}</Link>
+                                                <Link to={`/detail/${value.id_product?._id}`}>{value.id_product?.name_product}</Link>
                                                 </h5>
 
                                             </div>
                                             <div className="d-flex justify-content-between price-box">
-                                                <del className="new-price">{new Intl.NumberFormat('vi-VN',{style: 'decimal',decimal: 'VND'}).format(value.id_product.price_product)+ ' VNĐ'}</del>
+                                                <del className="new-price">{new Intl.NumberFormat('vi-VN',{style: 'decimal',decimal: 'VND'}).format(value.id_product?.price_product)+ ' VNĐ'}</del>
                                                 <span className="new-price" style={{ color: 'red' }}>
                                                     {new Intl.NumberFormat('vi-VN',{style: 'decimal',decimal: 'VND'})
-                                                    .format(parseInt(value.id_product.price_product) - ((parseInt(value.id_product.price_product) * parseInt(value.promotion)) / 100)) + ' VNĐ'}
+                                                    .format(parseInt(value.id_product?.price_product) - ((parseInt(value.id_product?.price_product) * parseInt(value.promotion)) / 100)) + ' VNĐ'}
                                                 </span>
                                             </div>
                                             <ul className="rating" style={{marginTop:10}}>
@@ -125,7 +125,7 @@ function Home_Category(props) {
                                                 <li><a href="#" title="quick view"
                                                     className="links-details"
                                                     data-toggle="modal"
-                                                    data-target={`#${value.id_product._id}`}
+                                                    data-target={`#${value.id_product?._id}`}
                                                     onClick={() => GET_id_modal(`${value.id_product._id}`, parseInt(value.id_product.price_product) - ((parseInt(value.id_product.price_product) * parseInt(value.promotion)) / 100))}><i className="fa fa-eye"></i></a></li>
                                             </ul>
                                         </div>

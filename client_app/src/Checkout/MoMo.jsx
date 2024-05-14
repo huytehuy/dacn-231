@@ -28,8 +28,8 @@ function MoMo(props) {
         const accessKey = "aCM4gfrPKBmFwNBa"
         const serectkey = "S6rRbLSPkRXef39MVB0huuqNOPXVBW8c"
         const orderInfo = "Thanh toán MoMo"
-        const notifyurl = "https://dacn-231-t581.onrender.com/api/Payment/momo"
-        const returnUrl = "http://dacn-231.vercel.app/momo"
+        const notifyurl = "http://localhost:8000/api/Payment/momo"
+        const returnUrl = "http://localhost:3000/momo"
         const amount = total.toString()
         const orderId = orderID
         const requestType = "captureMoMoWallet"

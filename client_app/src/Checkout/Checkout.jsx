@@ -13,9 +13,12 @@ import Detail_OrderAPI from '../API/Detail_OrderAPI';
 import CouponAPI from '../API/CouponAPI';
 import MoMo from './MoMo.jsx'
 import LogoMomo from './momo-png/momo_icon_square_pinkbg_RGB.png'
+import Modal_Image from '../Modal';
+import Button from 'react-bootstrap/Button';
+
 // import GoogleMap from '../GoogleMap/index'
 
-const socket = io('https://dacn-231-t581.onrender.com/', {
+const socket = io('http://localhost:8000', {
     transports: ['websocket'], jsonp: false
 });
 socket.connect();
@@ -43,7 +46,7 @@ function Checkout(props) {
 
     const [check_action, set_check_action] = useState(false)
 
-
+    const [modalShow, setModalShow] = React.useState(false);
 
     useEffect(() => {
 
@@ -199,7 +202,7 @@ function Checkout(props) {
             total: total_price,
             status: "1",
             pay: false,
-            id_payment: '6086709cdc52ab1ae999e882',
+            id_payment: '65a29a55c177c63bbf8109d2',
             id_note: response_delivery._id,
             feeship: price,
             id_coupon: localStorage.getItem('id_coupon') ? localStorage.getItem('id_coupon') : '',
@@ -242,7 +245,7 @@ function Checkout(props) {
         }
 
         // Gửi socket lên server
-        socket.emit('send_order', "Có người vừa đặt hàng")
+        socket.emit('send_order', "Có người vừa đặt hàng");
         // Xử lý API Send Mail
 
         const send_mail = await OrderAPI.post_email(data_email)
@@ -426,7 +429,7 @@ function Checkout(props) {
                                                 </div>
                                                 <div>
                                                     <label htmlFor="Price">Shipping Cost: </label>&nbsp;
-                                                        <label id="price_shipping"></label>
+                                                        <label id="price_shipping">10000</label>
                                                         &nbsp;<label>VNĐ</label>
                                                 </div>
                                             </div>
@@ -613,6 +616,42 @@ function Checkout(props) {
                                                                         total={total_price}
                                                                         />
                                                                 </div>  
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div className="card" style={{marginTop:10}}>
+                                                    <div className="card-header" id="#payment-3">
+                                                        <h5 className="panel-title">
+                                                            <a className="collapsed" data-toggle="collapse" data-target="#collapseMomo" aria-expanded="true" aria-controls="collapseMomo">
+                                                                QR
+                                                        </a>
+                                                        </h5>
+                                                    </div>
+                                                    <div>
+                                                        <div className="card-body">
+                                                            {
+                                                                show_error ? 'Please Checking Information!' :
+                                                                <div onClick={()=>Modal_Image}>
+                                                                    {/* <img src={LogoQR} width="100" onClick={handlerMomo}
+                                                                    style={{ cursor: 'pointer' }} />
+                                                                    <MoMo 
+                                                                        orderID={orderID}
+                                                                        total={total_price}
+                                                                        /> */}
+                                                                {/* Click to payment */}
+                                                                <Button variant="primary" onClick={() => setModalShow(true)}>
+        Pay with QR
+      </Button>
+
+      <Modal_Image
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
+
+                                                      </div>  
                                                             }
                                                         </div>
                                                     </div>
