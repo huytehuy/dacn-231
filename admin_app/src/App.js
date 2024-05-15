@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import './App.css';
 
 import {
@@ -52,6 +52,11 @@ import CreateSale from './component/Sale/CreateSale';
 import UpdateSale from './component/Sale/UpdateSale';
 
 function App() {
+  const Home = lazy(() => {
+    return new Promise((resolve) => {
+      setTimeout(() => resolve(import("./component/Product/Product")), 2000);
+    });
+  });
   return (
     <AuthContextProvider>
       <Router>
@@ -110,7 +115,7 @@ function App() {
             <Route path='/sale/:id' component={UpdateSale} />
 
             <Route component={NotFound} />
-          </Switch>;
+          </Switch>
 
       </div>
 

@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import categoryAPI from '../Api/categoryAPI';
 import isEmpty from 'validator/lib/isEmpty'
 import productAPI from '../Api/productAPI';
+import LoadingOverlay from 'react-loading-overlay-ts';
 
 function UpdateProduct(props) {
     const [id] = useState(props.match.params.id)
@@ -19,23 +20,31 @@ function UpdateProduct(props) {
     const [fileName, setFileName] = useState("");
     const [validationMsg, setValidationMsg] = useState('');
     const { handleSubmit } = useForm();
+    const [loading, setLoading] = useState(true);
+    const [newImage, setNewImage] = useState();
 
 
     useEffect(() => {
         const fetchAllData = async () => {
-            const ct = await categoryAPI.getAPI()
-            const rs = await productAPI.details(id)
-            console.log(rs)
-            setName(rs.name_product)
-            setPrice(rs.price_product)
-            setDescription(rs.describe)
-            // setNumber(rs.number)
-            setCategoryChoose(rs.id_category)
-            setImage(rs.image)
-            setCategory(ct)
-        }
-        fetchAllData()
-    }, [])
+            setLoading(true);
+            try {
+                const ct = await categoryAPI.getAPI();
+                const rs = await productAPI.details(id);
+                console.log(rs);
+                setName(rs.name_product);
+                setPrice(rs.price_product);
+                setDescription(rs.describe);
+                setCategoryChoose(rs.id_category);
+                setImage(rs.image);
+                setCategory(ct);
+            } catch (err) {
+                console.error('Failed to fetch data');
+            }
+            setLoading(false);
+        };
+
+        fetchAllData();
+    }, [id]);
 
     const saveFile = (e) => {
         setFile(e.target.files[0]);
@@ -82,22 +91,22 @@ function UpdateProduct(props) {
     }
 
     const handleCreate = () => {
-
+        setLoading(true);
         const isValid = validateAll();
         if (!isValid) return
         console.log(file)
         addProduct();
-
     }
 
     const addProduct = async () => {
         const formData = new FormData();
-        formData.append("id", id);
-        formData.append("file", file);
-        formData.append("fileName", fileName);
-        formData.append("name", name)
-        formData.append("price", price)
+        formData.append("_id", id);
+        // formData.append("file", file);
+        // formData.append("fileName", fileName);
+        formData.append("name_product", name)
+        formData.append("price_product", price)
         formData.append("category", categoryChoose)
+        formData.append("image", newImage?newImage:image)
         // formData.append("number", number)
         formData.append("description", description)
         formData.append("gender", genderChoose)
@@ -106,6 +115,7 @@ function UpdateProduct(props) {
 
         if (response.msg === "Bạn đã update thành công") {
             window.scrollTo(0, 0)
+            setLoading(false);
         }
         setValidationMsg({ api: response.msg })
 
@@ -114,7 +124,11 @@ function UpdateProduct(props) {
 
     return (
         <div className="page-wrapper">
-
+    <LoadingOverlay
+      active={loading}
+      spinner
+      text='Loading data ...'
+    >
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-12">
@@ -153,6 +167,11 @@ function UpdateProduct(props) {
                                         <input type="text" className="form-control" id="description" name="description" value={description} onChange={(e) => setDescription(e.target.value)} required />
                                         <p className="form-text text-danger">{validationMsg.description}</p>
                                     </div>
+                                    <div className="form-group w-50">
+                                        <label htmlFor="description">Link ảnh mới</label>
+                                        <input type="text" className="form-control" id="newImage" name="newImage" value={newImage} onChange={(e) => setNewImage(e.target.value)}/>
+                                        <p className="form-text text-danger">{validationMsg.image}</p>
+                                    </div>
                                     {/* <div className="form-group w-50">
                                         <label htmlFor="number">Số lượng: </label>
                                         <input type="text" className="form-control" id="number" name="number" value={number} onChange={(e) => onChangeNumber(e)} required />
@@ -186,10 +205,10 @@ function UpdateProduct(props) {
                                         </select>
                                     </div> */}
 
-                                    <div className="form-group w-50">
+                                    {/* <div className="form-group w-50">
                                         <label>Hình Ảnh</label>
                                         <input type="file" className="form-control-file" name="file" onChange={saveFile} />
-                                    </div>
+                                    </div> */}
 
                                     <div className="form-group w-50">
                                         <label>Hình Ảnh Cũ</label>
@@ -204,9 +223,7 @@ function UpdateProduct(props) {
                     </div>
                 </div>
             </div>
-            <footer className="footer text-center text-muted">
-                All Rights Reserved by Adminmart. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
-            </footer>
+            </LoadingOverlay>
         </div>
     );
 }

@@ -3,22 +3,31 @@ import { useForm } from "react-hook-form";
 import queryString from 'query-string'
 import isEmpty from 'validator/lib/isEmpty'
 import categoryAPI from '../Api/categoryAPI'
+import LoadingOverlay from 'react-loading-overlay-ts';
 
 function UpdateCategory(props) {
     const [id] = useState(props.match.params.id)
     const [name, setName] = useState('');
     const [validationMsg, setValidationMsg] = useState('');
     const { handleSubmit } = useForm();
+    const [loading, setLoading] = useState(true);
+
 
     useEffect(() => {
         const fetchAllData = async () => {
-            const ct = await categoryAPI.details(id)
-            console.log(ct)
-            setName(ct.category);
-        }
+            setLoading(true);
+            try {
+                const ct = await categoryAPI.details(id);
+                console.log(ct);
+                setName(ct.category);
+            } catch (err) {
+                console.error(err.message || 'An error occurred');
+            }
+            setLoading(false);
+        };
 
-        fetchAllData()
-    }, [])
+        fetchAllData();
+    }, [id]);
 
     const validateAll = () => {
         let msg = {}
@@ -32,7 +41,7 @@ function UpdateCategory(props) {
     }
 
     const handleUpdate = () => {
-
+        setLoading(true);
         const isValid = validateAll();
         if (!isValid) return
         console.log(name)
@@ -43,11 +52,16 @@ function UpdateCategory(props) {
         const query = '?' + queryString.stringify({ id: id, name: name })
         const response = await categoryAPI.update(query)
         setValidationMsg({ api: response.msg })
+        setLoading(false);
 
     }
     return (
         <div className="page-wrapper">
-
+    <LoadingOverlay
+      active={loading}
+      spinner
+      text='Loading data ...'
+    >
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-12">
@@ -86,9 +100,7 @@ function UpdateCategory(props) {
                     </div>
                 </div>
             </div>
-            <footer className="footer text-center text-muted">
-                All Rights Reserved by Adminmart. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
-</footer>
+            </LoadingOverlay>
         </div>
     );
 }

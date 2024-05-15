@@ -141,10 +141,6 @@ function Delivery(props) {
                     </div>
                 </div>
             </div>
-            <footer className="footer text-center text-muted">
-                All Rights Reserved by Adminmart. Designed and Developed by
-            <a href="https://www.facebook.com/KimTien.9920/">Tiền Kim</a>.
-        </footer>
         </div>
     );
 }

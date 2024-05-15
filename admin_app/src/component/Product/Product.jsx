@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense} from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import queryString from 'query-string'
 
 import productAPI from '../Api/productAPI';
 import Pagination from '../Shared/Pagination'
 import Search from '../Shared/Search'
+import LoadingOverlay from 'react-loading-overlay-ts';
 
-
-function Product() {
+function Product(props) {
 
     const [filter, setFilter] = useState({
         page: '1',
@@ -18,18 +18,27 @@ function Product() {
 
     const [products, setProducts] = useState([])
     const [totalPage, setTotalPage] = useState()
+    const [loading, setLoading] = useState(true);
+
 
 
     useEffect(() => {
-        const query = '?' + queryString.stringify(filter)
+        const query = '?' + queryString.stringify(filter);
 
         const fetchAllData = async () => {
-            const response = await productAPI.getAPI(query)
-            setProducts(response.products)
-            setTotalPage(response.totalPage)
-        }
-        fetchAllData()
-    }, [filter])
+            setLoading(true);
+            try {
+                const response = await productAPI.getAPI(query);
+                setProducts(response.products);
+                setTotalPage(response.totalPage);
+            } catch (error) {
+                console.error("Failed to fetch products", error);
+            }
+            setLoading(false);
+        };
+
+        fetchAllData();
+    }, [filter]);
 
 
     const onPageChange = (value) => {
@@ -66,17 +75,23 @@ function Product() {
 
     return (
         <div className="page-wrapper">
+    <LoadingOverlay
+      active={loading}
+      spinner
+      text='Loading data ...'
+    >
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-12">
                         <div className="card">
+                        
                             <div className="card-body">
                                 <h4 className="card-title">Products</h4>
                                 <Search handlerSearch={handlerSearch} />
 
                                 <Link to="/product/create" className="btn btn-primary my-3">New create</Link>
-
                                 <div className="table-responsive">
+                                {/* {loading?(<div style={{display:'flex',justifyContent:'center',alignItems:'center'}}><ReactLoading type="bars" height={'20%'} width={'20%'} color="coral"/></div>): */}
                                     <table className="table table-striped table-bordered no-wrap">
                                         <thead>
                                             <tr>
@@ -92,6 +107,7 @@ function Product() {
                                         </thead>
 
                                         <tbody>
+
                                             {
                                                 products && products.map((value, index) => (
                                                     <tr key={index}>
@@ -120,10 +136,7 @@ function Product() {
                     </div>
                 </div>
             </div>
-            <footer className="footer text-center text-muted">
-                All Rights Reserved by Adminmart. Designed and Developed by <a
-                    href="https://www.facebook.com/KimTien.9920/">Tiền Kim</a>.
-            </footer>
+            </LoadingOverlay>
         </div>
     );
 }

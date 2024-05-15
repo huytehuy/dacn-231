@@ -4,6 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import productAPI from '../Api/productAPI';
 import SaleAPI from '../Api/SaleAPI';
 import { useParams } from 'react-router';
+import LoadingOverlay from 'react-loading-overlay-ts';
 
 const defaultValues = {
     promotion: '',
@@ -15,9 +16,11 @@ function UpdateSale(props) {
     const { id } = useParams()
 
     const [showMessage, setShowMessage] = useState('')
+    const [loading, setLoading] = useState(true);
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm({ defaultValues });
     const onSubmit = async (data) => {
+        setLoading(true);
 
         const body = {
             promotion: promotion,
@@ -29,6 +32,7 @@ function UpdateSale(props) {
         const response = await SaleAPI.updateSale(id, body)
 
         setShowMessage(response)
+        setLoading(false);
 
     };
 
@@ -40,27 +44,33 @@ function UpdateSale(props) {
     const [product, setProduct] = useState([])
 
     useEffect(() => {
-
         const fetchData = async () => {
+            setLoading(true);
+            try {
+                const response = await productAPI.getAll();
+                setProduct(response);
 
-            const response = await productAPI.getAll()
-            setProduct(response)
+                const resDetail = await SaleAPI.detailSale(id);
+                console.log(resDetail);
 
-            const resDetail = await SaleAPI.detailSale(id)
+                setPromotion(resDetail.promotion);
+                setDescribe(resDetail.describe);
+            } catch (err) {
+                console.error(err.message || 'An error occurred');
+            }
+            setLoading(false);
+        };
 
-            console.log(resDetail)
-
-            setPromotion(resDetail.promotion)
-            setDescribe(resDetail.describe)
-
-        }
-
-        fetchData()
-
-    }, [])
+        fetchData();
+    }, [id]);
 
     return (
         <div className="page-wrapper">
+                            <LoadingOverlay
+      active={loading}
+      spinner
+      text='Loading data ...'
+    >
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-12">
@@ -133,9 +143,7 @@ function UpdateSale(props) {
                     </div>
                 </div>
             </div>
-            <footer className="footer text-center text-muted">
-                All Rights Reserved by Adminmart. Designed and Developed by <a href="https://www.facebook.com/KimTien.9920/">Tiền Kim</a>.
-            </footer>
+            </LoadingOverlay>
         </div>
     );
 }

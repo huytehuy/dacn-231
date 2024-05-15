@@ -3,13 +3,15 @@ import { useForm } from "react-hook-form";
 import categoryAPI from '../Api/categoryAPI';
 import isEmpty from 'validator/lib/isEmpty'
 import productAPI from '../Api/productAPI';
+import LoadingOverlay from 'react-loading-overlay-ts';
 
 function CreateProduct(props) {
     const [category, setCategory] = useState([])
     const [gender] = useState(["Unisex", "Male", "Female"])
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
-    const [description, setDescription] = useState('');
+    const [description, setDescription] = useState('');    
+    const [image, setImage] = useState('');
     const [number, setNumber] = useState('');
     const [categoryChoose, setCategoryChoose] = useState('');
     const [genderChoose, setGenderChoose] = useState('Unisex');
@@ -17,20 +19,28 @@ function CreateProduct(props) {
     const [fileName, setFileName] = useState("");
     const [validationMsg, setValidationMsg] = useState('');
     const { handleSubmit } = useForm();
+    const [loading, setLoading] = useState(true);
 
 
     useEffect(() => {
         const fetchAllData = async () => {
-            const ct = await categoryAPI.getAPI()
-            setCategory(ct)
-        }
-        fetchAllData()
-    }, [])
+            setLoading(true);
+            try {
+                const ct = await categoryAPI.getAPI();
+                setCategory(ct);
+            } catch (err) {
+                console.error('Failed to fetch data');
+            }
+            setLoading(false);
+        };
 
-    const saveFile = (e) => {
-        setFile(e.target.files[0]);
-        setFileName(e.target.files[0].name);
-    };
+        fetchAllData();
+    }, []);
+
+    // const saveFile = (e) => {
+    //     setFile(e.target.files[0]);
+    //     setFileName(e.target.files[0].name);
+    // };
 
     const onChangeNumber = (e) => {
         const value = e.target.value
@@ -76,21 +86,21 @@ function CreateProduct(props) {
     }
 
     const handleCreate = () => {
-
+        setLoading(true);
         const isValid = validateAll();
         if (!isValid) return
         console.log(file)
         addProduct();
-
     }
 
     const addProduct = async () => {
         const formData = new FormData();
-        formData.append("file", file);
-        formData.append("fileName", fileName);
-        formData.append("name", name)
-        formData.append("price", price)
+        // formData.append("file", file);
+        // formData.append("fileName", fileName);
+        formData.append("name_product", name)
+        formData.append("price_product", price)
         formData.append("category", categoryChoose)
+        formData.append("image", image)
         // formData.append("number", number)
         formData.append("description", description)
         formData.append("gender", genderChoose)
@@ -106,6 +116,8 @@ function CreateProduct(props) {
             setGenderChoose('Unisex')
             setFile('')
             setFileName('')
+            setImage('')
+            setLoading(false);
             window.scrollTo(0, 0)
         }
         setValidationMsg({ api: response.msg })
@@ -115,6 +127,11 @@ function CreateProduct(props) {
 
     return (
         <div className="page-wrapper">
+                <LoadingOverlay
+      active={loading}
+      spinner
+      text='Loading data ...'
+    >
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-12">
@@ -141,7 +158,7 @@ function CreateProduct(props) {
                                     <div className="form-group w-50">
                                         <label htmlFor="name">Tên Sản Phẩm</label>
                                         <input type="text" className="form-control" id="name" name="name" value={name} onChange={(e) => setName(e.target.value)} required />
-                                        <p className="form-text text-danger">{validationMsg.name}</p>
+                                        <p className="form-text text-danger">{validationMsg.name_product}</p>
                                     </div>
                                     <div className="form-group w-50">
                                         <label htmlFor="price">Giá Sản Phẩm</label>
@@ -152,6 +169,11 @@ function CreateProduct(props) {
                                         <label htmlFor="description">Mô tả</label>
                                         <input type="text" className="form-control" id="description" name="description" value={description} onChange={(e) => setDescription(e.target.value)} required />
                                         <p className="form-text text-danger">{validationMsg.description}</p>
+                                    </div>
+                                    <div className="form-group w-50">
+                                        <label htmlFor="description">Link ảnh</label>
+                                        <input type="text" className="form-control" id="image" name="image" value={image} onChange={(e) => setImage(e.target.value)} required />
+                                        <p className="form-text text-danger">{validationMsg.image}</p>
                                     </div>
                                     {/* <div className="form-group w-50">
                                         <label htmlFor="number">Số lượng: </label>
@@ -186,10 +208,10 @@ function CreateProduct(props) {
                                         </select>
                                     </div> */}
 
-                                    <div className="form-group w-50">
+                                    {/* <div className="form-group w-50">
                                         <label>Hình Ảnh</label>
                                         <input type="file" className="form-control-file" name="file" onChange={saveFile} />
-                                    </div>
+                                    </div> */}
 
                                     <button type="submit" className="btn btn-primary">Create Product</button>
                                 </form>
@@ -198,9 +220,7 @@ function CreateProduct(props) {
                     </div>
                 </div>
             </div>
-            <footer className="footer text-center text-muted">
-                All Rights Reserved by Adminmart. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
-            </footer>
+            </LoadingOverlay>
         </div>
     );
 }

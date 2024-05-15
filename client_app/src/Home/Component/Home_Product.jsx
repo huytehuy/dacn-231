@@ -74,7 +74,7 @@ function Home_Product(props) {
 
             const response = await Product.Get_Category_Product(query)
 
-            set_products(response.splice(0, 7))
+            set_products(response.splice(0, 15))
 
         }
 

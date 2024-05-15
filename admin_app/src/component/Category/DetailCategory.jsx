@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import categoryAPI from '../Api/categoryAPI';
 import Pagination from '../Shared/Pagination'
 import Search from '../Shared/Search'
-import ModalCategory from './ModalCategory'
+import LoadingOverlay from 'react-loading-overlay-ts';
 
 function DetailCategory(props) {
     const [category] = useState(props.match.params.id)
@@ -18,18 +18,26 @@ function DetailCategory(props) {
 
     const [products, setProducts] = useState([])
     const [totalPage, setTotalPage] = useState()
+    const [loading, setLoading] = useState(true);
 
 
     useEffect(() => {
-        const query = '?' + queryString.stringify(filter)
+        const query = '?' + queryString.stringify(filter);
 
         const fetchAllData = async () => {
-            const response = await categoryAPI.detailProduct(category, query)
-            setProducts(response.products)
-            setTotalPage(response.totalPage)
-        }
-        fetchAllData()
-    }, [filter])
+            setLoading(true);
+            try {
+                const response = await categoryAPI.detailProduct(category, query);
+                setProducts(response.products);
+                setTotalPage(response.totalPage);
+            } catch (err) {
+                console.error(err.message || 'An error occurred');
+            }
+            setLoading(false);
+        };
+
+        fetchAllData();
+    }, [filter, category]);
 
     const onPageChange = (value) => {
         setFilter({
@@ -48,7 +56,11 @@ function DetailCategory(props) {
 
     return (
         <div className="page-wrapper">
-
+    <LoadingOverlay
+      active={loading}
+      spinner
+      text='Loading data ...'
+    >
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-12">
@@ -94,10 +106,7 @@ function DetailCategory(props) {
                     </div>
                 </div>
             </div>
-            <footer className="footer text-center text-muted">
-                All Rights Reserved by Adminmart. Designed and Developed by
-                <a href="https://www.facebook.com/KimTien.9920/">Tiền Kim</a>.
-            </footer>
+            </LoadingOverlay>
         </div>
     );
 }

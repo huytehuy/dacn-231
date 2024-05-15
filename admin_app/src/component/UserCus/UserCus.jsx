@@ -5,6 +5,8 @@ import queryString from 'query-string'
 import userAPI from '../Api/userAPI';
 import Pagination from '../Shared/Pagination'
 import Search from '../Shared/Search'
+import ReactLoading from 'react-loading';
+
 
 function UserCus(props) {
     const [filter, setFilter] = useState({
@@ -15,7 +17,7 @@ function UserCus(props) {
         status: true
     })
 
-    const [users, setUsers] = useState([])
+    const [users, setUsers] = useState(null)
     const [totalPage, setTotalPage] = useState()
 
 
@@ -64,15 +66,17 @@ function UserCus(props) {
         <div className="page-wrapper">
 
             <div className="container-fluid">
+
                 <div className="row">
                     <div className="col-12">
                         <div className="card">
+                        {users==null?<div style={{display:'flex',justifyContent:'center',alignItems:'center'}}><ReactLoading type="bars" height={'20%'} width={'20%'} color="coral"/></div>:
                             <div className="card-body">
                                 <h4 className="card-title">Users</h4>
                                 <Search handlerSearch={handlerSearch} />
 
                                 <Link to="/customer/create" className="btn btn-primary my-3">New create</Link>
-
+                                
                                 <div className="table-responsive">
                                     <table className="table table-striped table-bordered no-wrap">
                                         <thead>
@@ -92,7 +96,7 @@ function UserCus(props) {
                                                         <td>{value._id}</td>
                                                         <td>{value.fullname}</td>
                                                         <td>{value.email}</td>
-                                                        {/* <td>{value.id_permission.permission}</td> */}
+                                                        <td>admin</td>
                                                         <td>
                                                             <div className="d-flex">
                                                                 <Link to={"user/update/" + value._id} className="btn btn-success mr-1">Update</Link>
@@ -105,10 +109,10 @@ function UserCus(props) {
                                             }
                                         </tbody>
                                     </table>
-
+                                    <Pagination filter={filter} onPageChange={onPageChange} totalPage={totalPage} />
                                 </div>
-                                <Pagination filter={filter} onPageChange={onPageChange} totalPage={totalPage} />
-                            </div>
+                                
+                            </div>}
 
                         </div>
                     </div>
@@ -116,10 +120,6 @@ function UserCus(props) {
 
 
             </div>
-            <footer className="footer text-center text-muted">
-                All Rights Reserved by Adminmart. Designed and Developed by <a
-                    href="https://www.facebook.com/KimTien.9920/">Tiền Kim</a>.
-            </footer>
         </div>
     );
 }
