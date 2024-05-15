@@ -34,7 +34,7 @@ function Detail_Product(props) {
 
     // Hàm này dùng để gọi API hiển thị sản phẩm
     useEffect(() => {
-
+        
         const fetchData = async () => {
 
             const response = await Product.Get_Detail_Product(id)
@@ -51,7 +51,7 @@ function Detail_Product(props) {
 
         fetchData()
 
-    }, [id])
+    }, [])
 
 
     const [count, set_count] = useState(1)
@@ -259,7 +259,7 @@ function Detail_Product(props) {
                                             {/* </span> */}
                                             {/* {product.describle&&typeof Object.values(product.describle)}
                                             {typeof product.describle} */}
-                                            {product.describle&&product.describle.map((index)=><div>{index}</div>)}
+                                            {product.describe}
                                     </div>
                                     {/* <div className="product-variants">
                                         <div className="produt-variants-size">
@@ -307,7 +307,8 @@ function Detail_Product(props) {
                         <div id="description" className="tab-pane active show" role="tabpanel">
                             <div className="product-description">
                                 <ul className='list-disc'>
-                                    {product.description&&product.description.map((value)=><li>- {value}</li>)}
+                                    {/* {product.description&&product.description.map((value)=><li>- {value}</li>)} */}
+                                    {product?.describe}
                                 </ul>
                                 {/* <span>The best is yet to come! Give your walls a voice with a framed poster. This aesthethic, optimistic poster will look great in your desk or in an open-space office. Painted wooden frame with passe-partout for more depth.</span> */}
                             </div>
