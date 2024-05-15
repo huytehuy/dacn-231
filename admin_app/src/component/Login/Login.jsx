@@ -43,11 +43,11 @@ function Login(props) {
         console.log(response);
 
         if (response.msg === "Đăng nhập thành công") {
-            if (response.user.id_permission.permission === "Nhân Viên") {
+            if (response.user?.id_permission?.permission === "Nhân Viên") {
                 addLocal(response.jwt, response.user)
                 history.push('/customer')
             }
-            else if (response.user.id_permission.permission === "Admin") {
+            else if (response.user?.id_permission?.permission === "Admin") {
                 addLocal(response.jwt, response.user)
                 history.push('/user')
             } else {

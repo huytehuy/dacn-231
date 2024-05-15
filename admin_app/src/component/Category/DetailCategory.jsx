@@ -3,6 +3,7 @@ import queryString from 'query-string'
 import { Link } from 'react-router-dom'
 
 import categoryAPI from '../Api/categoryAPI';
+import productAPI from '../Api/productAPI';
 import Pagination from '../Shared/Pagination'
 import Search from '../Shared/Search'
 import LoadingOverlay from 'react-loading-overlay-ts';
@@ -53,6 +54,22 @@ function DetailCategory(props) {
             search: value
         })
     }
+    const handleDelete = async (value) => {
+
+        const data = {
+            id: value
+        }
+        const query = '?' + queryString.stringify(data)
+
+        const response = await productAPI.delete(query)
+
+        if (response.msg === "Thanh Cong") {
+            setFilter({
+                ...filter,
+                status: !filter.status
+            })
+        }
+    }
 
     return (
         <div className="page-wrapper">
@@ -92,6 +109,7 @@ function DetailCategory(props) {
                                                         <td>
                                                             <div className="d-flex">
                                                                 <Link to={"/product/update/" + value._id} className="btn btn-success mr-1">Update</Link>
+                                                                <button type="button" style={{ cursor: 'pointer', color: 'white' }} onClick={() => handleDelete(value._id)} className="btn btn-danger" >Delete</button>
                                                             </div>
                                                         </td>
                                                     </tr>
