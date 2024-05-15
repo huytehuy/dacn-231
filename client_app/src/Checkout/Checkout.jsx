@@ -18,7 +18,7 @@ import Button from 'react-bootstrap/Button';
 
 // import GoogleMap from '../GoogleMap/index'
 
-const socket = io('http://localhost:8000', {
+const socket = io('https://dacn-231-t581.onrender.com', {
     transports: ['websocket'], jsonp: false
 });
 socket.connect();

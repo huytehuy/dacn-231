@@ -7,7 +7,7 @@ import orderAPI from '../Api/orderAPI';
 import Pagination from '../Shared/Pagination'
 import Search from '../Shared/Search'
 
-const socket = io('http://localhost:8000/', {
+const socket = io('https://dacn-231-t581.onrender.com/', {
     transports: ['websocket'], jsonp: false
 });
 socket.connect();
