@@ -166,7 +166,7 @@ function Home(props) {
                 </div>
             </div>
             {/* {Array.from(new Set(productTemp)).map((index,value)=><Home_Product gender={index} category={index} GET_id_modal={GET_id_modal} />)} */}
-            /* Sửa Lại tiêu đề*/          
+             {/*Sửa Nhà bếp thành Điện Thoại */}      
             <Home_Product gender={`Điện Thoại`} category={'655a1c5423f28980f81145c7'} GET_id_modal={GET_id_modal} /> 
             <Home_Product gender={`Tủ Lạnh`} category={'65a2232ac177c63bbf7896c9'} GET_id_modal={GET_id_modal} />
             <Home_Product gender={`TV`} category={'65a2238ec177c63bbf794e27'} GET_id_modal={GET_id_modal} />
