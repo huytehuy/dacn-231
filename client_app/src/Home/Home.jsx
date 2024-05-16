@@ -105,7 +105,7 @@ function Home(props) {
                         <div>
                             <div className="carousel-inner">
                                 <div className="single-slide align-center-left animation-style-01 bg-1" 
-                                    style={{ backgroundImage: `url(https://theme.hstatic.net/1000248237/1000325770/14/slideshow_4.jpg?v=31)`}}>
+                                    style={{ backgroundImage: `url(https://scontent.fhan4-1.fna.fbcdn.net/v/t39.30808-6/242287014_4377575552336916_7564812452566810421_n.png?_nc_cat=105&ccb=1-7&_nc_sid=5f2048&_nc_ohc=ApHUyO4brLEQ7kNvgE72A9X&_nc_ht=scontent.fhan4-1.fna&oh=00_AYD_LnW3Kb7KfRJpvrWekyFBfbrZvhinEXrJ8i75M6wgAA&oe=664BA6EC)`}}>
                                     <div className="slider-progress"></div>
 
                                 </div>
