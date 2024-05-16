@@ -166,10 +166,11 @@ function Home(props) {
                 </div>
             </div>
             {/* {Array.from(new Set(productTemp)).map((index,value)=><Home_Product gender={index} category={index} GET_id_modal={GET_id_modal} />)} */}
-            <Home_Product gender={`Nhà bếp`} category={'655a1c5423f28980f81145c7'} GET_id_modal={GET_id_modal} />
-            <Home_Product gender={`Tủ lạnh`} category={'65a2232ac177c63bbf7896c9'} GET_id_modal={GET_id_modal} />
-            <Home_Product gender={`Ti vi`} category={'65a2238ec177c63bbf794e27'} GET_id_modal={GET_id_modal} />
-            <Home_Product gender={`Máy giặt`} category={'65a223ebc177c63bbf7a11bc'} GET_id_modal={GET_id_modal} />
+            /* Sửa Lại tiêu đề*/          
+            <Home_Product gender={`Điện Thoại`} category={'655a1c5423f28980f81145c7'} GET_id_modal={GET_id_modal} /> 
+            <Home_Product gender={`Tủ Lạnh`} category={'65a2232ac177c63bbf7896c9'} GET_id_modal={GET_id_modal} />
+            <Home_Product gender={`TV`} category={'65a2238ec177c63bbf794e27'} GET_id_modal={GET_id_modal} />
+            <Home_Product gender={`Máy Giặt`} category={'65a223ebc177c63bbf7a11bc'} GET_id_modal={GET_id_modal} />
             {/* <Home_Product gender={`Kitchen`} category={'655a1fc0a456ecf4093e1e6q'} GET_id_modal={GET_id_modal} /> */}
             {/* {product&&product.filter((item, index) => product.indexOf(item) === index)} */}
 
