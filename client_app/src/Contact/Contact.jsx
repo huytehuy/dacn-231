@@ -1,12 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import ChatGpt from '../ChatGPT/script'
-
-Contact.propTypes = {
-
-};
-
-function Contact(props) {
+function Contact() {
     return (
         <div>
             <div className="breadcrumb-area">
@@ -26,7 +19,7 @@ function Contact(props) {
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-5 offset-lg-1 col-md-12 order-1 order-lg-2">
-                            {/* <div className="contact-page-side-content">
+                            <div className="contact-page-side-content">
                                 <h3 className="contact-page-title">Contact Us</h3>
                                 <p className="contact-page-message mb-25">
                                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem sapiente ab cum accusantium, incidunt nihil fugit similique? Reiciendis ex dignissimos libero iusto quos, consequuntur nobis tenetur a minima! Voluptatum, ab?
@@ -43,11 +36,10 @@ function Contact(props) {
                                     <h4><i className="fa fa-envelope-o"></i> Email</h4>
                                     <p>huy.phamkhmtjapan@hcmut.edu.vn</p>
                                     <p>tien.tran214002@hcmut.edu.vn</p>
+                                    <p>hieu.nguyen3008@hcmut.edu.vn</p>
                                 </div>
-                            </div> */}
-                            <ChatGpt/>
+                            </div>
                         </div>
-                        
                         <div className="col-lg-6 col-md-12 order-2 order-lg-1">
                             <div className="contact-form-content pt-sm-55 pt-xs-55">
                                 <h3 className="contact-page-title">Tell Us Your Message</h3>
@@ -83,5 +75,4 @@ function Contact(props) {
         </div>
     );
 }
-
 export default Contact;

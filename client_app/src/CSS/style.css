@@ -2106,14 +2106,14 @@ textarea:focus {
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 300ms ease-in 0s;
 }
-.single-product-wrap:hover {
+/* .single-product-wrap:hover {
   margin: 0 0 -75px;
-  padding: 0 0 75px;
+  padding: 0 0 0px;
   z-index: 9;
-}
-.single-product-wrap.mt-40:hover {
-  margin: 40px 0 -85px;
-}
+} */
+/* .single-product-wrap.mt-40:hover {
+  margin: 40px 0 0px;
+} */
 .single-product-wrap::before {
 	background: #ffffff none repeat scroll 0 0;
 	box-shadow: 0 0 10px 0 rgba(0,0,0,.15);

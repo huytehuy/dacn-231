@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import queryString from 'query-string'
-import Product from '../../API/Product';
 import { Link } from 'react-router-dom';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -11,13 +9,10 @@ import SaleAPI from '../../API/SaleAPI';
 Home_Category.propTypes = {
     GET_id_modal: PropTypes.func
 };
-
 Home_Category.defaultProps = {
     GET_id_modal: null
 }
-
 function Home_Category(props) {
-
     var settings = {
         dots: false,
         infinite: true,
@@ -52,27 +47,16 @@ function Home_Category(props) {
             }
         ]
     };
-
     // Lấy func từ component cha chuyển xuống
     const { GET_id_modal } = props
-
     const [product_category, set_product_category] = useState([])
-
     useEffect(() => {
-
         const fetchData = async () => {
-
             const response = await SaleAPI.getList()
-
             set_product_category(response)
-
         }
-
         fetchData()
-
     }, [])
-
-
     return (
         <div className="product-area pt-60 pb-50">
             <div className="container">
@@ -86,39 +70,38 @@ function Home_Category(props) {
                     </div>
                 </div>
                 <Slider {...settings}>
-
                     {
                         product_category && product_category.map(value => (
                             <div className="col-lg-12 animate__animated animate__zoomIn col_product" style={{ zIndex: '999', height: '30rem' }} key={value._id}>
                                 <div className="single-product-wrap">
                                     <div className="product-image">
                                         <Link to={`/detail/${value.id_product?._id}`}>
-                                            <img src={value.id_product?.image} alt="Li's Product Image" />
+                                            <img style={{ height: 250, objectFit: 'contain' }} src={value.id_product?.image} alt="Li's Product Image" />
                                         </Link>
                                         <span className="sticker">-{value.promotion}%</span>
                                     </div>
                                     <div className="product_desc">
                                         <div className="product_desc_info">
                                             <div className="product-review">
-                                                <h5 className="manufacturer" style={{height:40,display:'flex',alignItems:'center'}}>
-                                                <Link to={`/detail/${value.id_product?._id}`}>{value.id_product?.name_product}</Link>
+                                                <h5 className="manufacturer" style={{ height: 40, display: 'flex', alignItems: 'center' }}>
+                                                    <Link to={`/detail/${value.id_product?._id}`}>{value.id_product?.name_product}</Link>
                                                 </h5>
 
                                             </div>
                                             <div className="d-flex justify-content-between price-box">
-                                                <del className="new-price">{new Intl.NumberFormat('vi-VN',{style: 'decimal',decimal: 'VND'}).format(value.id_product?.price_product)+ ' VNĐ'}</del>
+                                                <del className="new-price">{new Intl.NumberFormat('vi-VN', { style: 'decimal', decimal: 'VND' }).format(value.id_product?.price_product) + ' VNĐ'}</del>
                                                 <span className="new-price" style={{ color: 'red' }}>
-                                                    {new Intl.NumberFormat('vi-VN',{style: 'decimal',decimal: 'VND'})
-                                                    .format(parseInt(value.id_product?.price_product) - ((parseInt(value.id_product?.price_product) * parseInt(value.promotion)) / 100)) + ' VNĐ'}
+                                                    {new Intl.NumberFormat('vi-VN', { style: 'decimal', decimal: 'VND' })
+                                                        .format(parseInt(value.id_product?.price_product) - ((parseInt(value.id_product?.price_product) * parseInt(value.promotion)) / 100)) + ' VNĐ'}
                                                 </span>
                                             </div>
-                                            <ul className="rating" style={{marginTop:10}}>
-                                                                <li><i style={{fontSize:20}} className="fa fa-star-o"></i></li>
-                                                                <li><i style={{fontSize:20}} className="fa fa-star-o"></i></li>
-                                                                <li><i style={{fontSize:20}} className="fa fa-star-o"></i></li>
-                                                                <li><i style={{fontSize:20}} className="fa fa-star-o"></i></li>
-                                                                <li className="no-star"><i style={{fontSize:20}} className="fa fa-star-o"></i></li>
-                                                            </ul>
+                                            <ul className="rating" style={{ marginTop: 10 }}>
+                                                <li><i style={{ fontSize: 20 }} className="fa fa-star-o"></i></li>
+                                                <li><i style={{ fontSize: 20 }} className="fa fa-star-o"></i></li>
+                                                <li><i style={{ fontSize: 20 }} className="fa fa-star-o"></i></li>
+                                                <li><i style={{ fontSize: 20 }} className="fa fa-star-o"></i></li>
+                                                <li className="no-star"><i style={{ fontSize: 20 }} className="fa fa-star-o"></i></li>
+                                            </ul>
                                         </div>
                                         <div className="add_actions">
                                             <ul className="add-actions-link">
@@ -139,5 +122,4 @@ function Home_Category(props) {
         </div >
     );
 }
-
 export default Home_Category;

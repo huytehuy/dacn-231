@@ -35,7 +35,7 @@ function Products(props) {
                         <div className="single-product-wrap">
                             <div className="product-image">
                                 <Link to={`/detail/${value._id}`}>
-                                    <img src={value.image} alt="Li's Product Image" />
+                                    <img style={{height:250,objectFit: 'contain'}}src={value.image} alt="Li's Product Image" />
                                 </Link>
                                 <span className="sticker">New</span>
                             </div>

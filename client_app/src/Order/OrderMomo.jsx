@@ -58,10 +58,7 @@ function OrderMomo(props) {
                 }
 
                 if (localStorage.getItem("id_coupon")){
-
                     const responseUpdate = await CouponAPI.updateCoupon(localStorage.getItem("id_coupon"))
-                    console.log(responseUpdate)
-        
                 }
 
                 // data Note

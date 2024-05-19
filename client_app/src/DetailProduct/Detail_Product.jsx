@@ -3,68 +3,43 @@ import { Modal } from "react-bootstrap";
 import { useParams } from 'react-router';
 import Product from '../API/Product';
 import { useDispatch, useSelector } from 'react-redux';
-import { stringify } from 'query-string';
-import { addCart } from '../Redux/Action/ActionCart';
 import { changeCount } from '../Redux/Action/ActionCount';
 import { Link } from 'react-router-dom';
-import Cart from '../API/CartAPI';
 import CommentAPI from '../API/CommentAPI';
 import CartsLocal from '../Share/CartsLocal';
 import SaleAPI from '../API/SaleAPI';
 
-Detail_Product.propTypes = {
-
-};
-
-function Detail_Product(props) {
-
+function Detail_Product() {
     const { id } = useParams()
-
     const [product, set_product] = useState({})
-
+    const [Loading, set_Loading] = useState(false);
     const dispatch = useDispatch()
 
     //id_user được lấy từ redux
-    const id_user = useSelector(state => state.Cart.id_user)
-
     // Get count từ redux khi user chưa đăng nhập
     const count_change = useSelector(state => state.Count.isLoad)
-
     const [sale, setSale] = useState()
-
     // Hàm này dùng để gọi API hiển thị sản phẩm
     useEffect(() => {
-        
         const fetchData = async () => {
-
+            set_Loading(true)
+            set_product({})
             const response = await Product.Get_Detail_Product(id)
-
+            set_Loading(false)
             set_product(response)
-
             const resDetail = await SaleAPI.checkSale(id)
-            
-            if (resDetail.msg === "Thanh Cong"){
+            if (resDetail.msg === "Thanh Cong") {
                 setSale(resDetail.sale)
             }
-
         }
-
         fetchData()
-
-    }, [])
-
+    }, [id])
 
     const [count, set_count] = useState(1)
-
     const [show_success, set_show_success] = useState(false)
-
-    const [size, set_size] = useState('S')
-
     // Hàm này dùng để thêm vào giỏ hàng
     const handler_addcart = (e) => {
-
         e.preventDefault()
-
         const data = {
             id_cart: Math.random().toString(),
             id_product: id,
@@ -72,123 +47,93 @@ function Detail_Product(props) {
             price_product: sale ? parseInt(sale.id_product.price_product) - ((parseInt(sale.id_product.price_product) * parseInt(sale.promotion)) / 100) : product.price_product,
             count: count,
             image: product.image,
-            size: size,
+            size: 'S',
         }
 
         CartsLocal.addProduct(data)
-
         const action_count_change = changeCount(count_change)
         dispatch(action_count_change)
-
         set_show_success(true)
-
         setTimeout(() => {
             set_show_success(false)
         }, 1000)
-
     }
-
-
 
     // Hàm này dùng để giảm số lượng
     const downCount = () => {
         if (count === 1) {
             return
         }
-
         set_count(count - 1)
     }
-
     const upCount = () => {
         set_count(count + 1)
     }
 
-
     // State dùng để mở modal
     const [modal, set_modal] = useState(false)
-
     // State thông báo lỗi comment
     const [error_comment, set_error_comment] = useState(false)
-
     const [star, set_star] = useState(1)
-
     const [comment, set_comment] = useState('')
-
     const [validation_comment, set_validation_comment] = useState(false)
-
     // state load comment
     const [load_comment, set_load_comment] = useState(true)
-
     // State list_comment
     const [list_comment, set_list_comment] = useState([])
-
     // Hàm này dùng để gọi API post comment sản phẩm của user
     const handler_Comment = () => {
 
         if (!sessionStorage.getItem('id_user')) { // Khi khách hàng chưa đăng nhập
-
             set_error_comment(true)
-
         } else { // Khi khách hàng đã đăng nhập
-
             if (!comment) {
                 set_validation_comment(true)
                 return
             }
-
             const data = {
                 id_user: sessionStorage.getItem('id_user'),
                 content: comment,
                 star: star
             }
-
             const post_data = async () => {
-
                 const response = await CommentAPI.post_comment(data, id)
-
                 console.log(response)
-
                 set_load_comment(true)
-
                 set_comment('')
-
                 set_modal(false)
-
             }
-
             post_data()
-
         }
-
         setTimeout(() => {
             set_error_comment(false)
         }, 1500)
-
     }
-
-
     // Hàm này dùng để GET API load ra những comment của sản phẩm
     useEffect(() => {
-
         if (load_comment) {
             const fetchData = async () => {
-
                 const response = await CommentAPI.get_comment(id)
-
                 set_list_comment(response)
-
             }
-
             fetchData()
-
             set_load_comment(false)
         }
-
     }, [load_comment])
-
 
     return (
         <div>
+            {Loading && <div className="sk-cube-grid">
+                <div className="sk-cube sk-cube1"></div>
+                <div className="sk-cube sk-cube2"></div>
+                <div className="sk-cube sk-cube3"></div>
+                <div className="sk-cube sk-cube4"></div>
+                <div className="sk-cube sk-cube5"></div>
+                <div className="sk-cube sk-cube6"></div>
+                <div className="sk-cube sk-cube7"></div>
+                <div className="sk-cube sk-cube8"></div>
+                <div className="sk-cube sk-cube9"></div>
+            </div>}
             {
                 show_success &&
                 <div className="modal_success">
@@ -211,8 +156,6 @@ function Detail_Product(props) {
                     </div>
                 </div>
             }
-
-
             <div className="breadcrumb-area">
                 <div className="container">
                     <div className="breadcrumb-content">
@@ -238,39 +181,25 @@ function Detail_Product(props) {
                         </div>
 
                         <div className="col-lg-7 col-md-6">
-                            <div className="product-details-view-content pt-60">
+                            <div className="">
                                 <div className="product-info">
                                     <h2>{product.name_product}</h2>
                                     <div className="price-box pt-20">
                                         {
-                                            sale ? (<del className="new-price new-price-2" style={{ color: '#525252'}}>{new Intl.NumberFormat('vi-VN',{style: 'decimal',decimal: 'VND'}).format(product.price_product)+ ' VNĐ'}</del>) :
-                                            <span className="new-price new-price-2">{new Intl.NumberFormat('vi-VN',{style: 'decimal',decimal: 'VND'}).format(product.price_product)+ ' VNĐ'}</span>
+                                            sale ? (<del className="new-price new-price-2" style={{ color: '#525252' }}>{new Intl.NumberFormat('vi-VN', { style: 'decimal', decimal: 'VND' }).format(product.price_product) + ' VNĐ'}</del>) :
+                                                <span className="new-price new-price-2">{new Intl.NumberFormat('vi-VN', { style: 'decimal', decimal: 'VND' }).format(product.price_product) + ' VNĐ'}</span>
                                         }
                                         <br />
                                         {
                                             sale && (
-                                                <span className="new-price new-price-2">{new Intl.NumberFormat('vi-VN',{style: 'decimal',decimal: 'VND'})
-                                                .format(parseInt(sale.id_product.price_product) - ((parseInt(sale.id_product.price_product) * parseInt(sale.promotion)) / 100)) + ' VNĐ'}</span>
+                                                <span className="new-price new-price-2">{new Intl.NumberFormat('vi-VN', { style: 'decimal', decimal: 'VND' })
+                                                    .format(parseInt(sale.id_product.price_product) - ((parseInt(sale.id_product.price_product) * parseInt(sale.promotion)) / 100)) + ' VNĐ'}</span>
                                             )
                                         }
                                     </div>
                                     <div className="product-desc">
-                                            {/* <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel harum tenetur delectus nam quam assumenda? Soluta vitae tempora ratione excepturi doloremque, repudiandae ullam, eum corporis, itaque dolor aperiam enim aspernatur. */}
-                                            {/* </span> */}
-                                            {/* {product.describle&&typeof Object.values(product.describle)}
-                                            {typeof product.describle} */}
-                                            {product.describe}
+                                        {product.describe}
                                     </div>
-                                    {/* <div className="product-variants">
-                                        <div className="produt-variants-size">
-                                            <label>Size</label>
-                                            <select className="nice-select" onChange={(e) => set_size(e.target.value)}>
-                                                <option value="S">S</option>
-                                                <option value="M">M</option>
-                                                <option value="L">L</option>
-                                            </select>
-                                        </div>
-                                    </div> */}
                                     <div className="single-add-to-cart">
                                         <form action="#" className="cart-quantity">
                                             <div className="quantity">
@@ -290,7 +219,6 @@ function Detail_Product(props) {
                     </div>
                 </div>
             </div>
-
             <div className="product-area pt-35">
                 <div className="container">
                     <div className="row">
@@ -307,10 +235,9 @@ function Detail_Product(props) {
                         <div id="description" className="tab-pane active show" role="tabpanel">
                             <div className="product-description">
                                 <ul className='list-disc'>
-                                    {/* {product.description&&product.description.map((value)=><li>- {value}</li>)} */}
                                     {product?.describe}
                                 </ul>
-                                {/* <span>The best is yet to come! Give your walls a voice with a framed poster. This aesthethic, optimistic poster will look great in your desk or in an open-space office. Painted wooden frame with passe-partout for more depth.</span> */}
+
                             </div>
                         </div>
                         <div id="reviews" className="tab-pane" role="tabpanel">
@@ -319,7 +246,6 @@ function Detail_Product(props) {
                                     <div style={{ overflow: 'auto', height: '10rem' }}>
                                         {
                                             list_comment && list_comment.map(value => (
-
                                                 <div className="comment-author-infos pt-25" key={value._id}>
                                                     <span>{value.id_user.fullname} <div style={{ fontWeight: '400' }}>{value.content}</div></span>
                                                     <ul className="rating">
