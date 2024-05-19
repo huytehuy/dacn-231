@@ -181,7 +181,7 @@ function Detail_Product() {
                         </div>
 
                         <div className="col-lg-7 col-md-6">
-                            <div className="">
+                            <div className="product-details-view-content pt-60">
                                 <div className="product-info">
                                     <h2>{product.name_product}</h2>
                                     <div className="price-box pt-20">
