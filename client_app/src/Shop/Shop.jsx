@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import queryString from 'query-string'
 import Product from '../API/Product';
 import { Link, useParams } from 'react-router-dom';
@@ -7,11 +6,7 @@ import Products from './Component/Products';
 import Pagination from './Component/Pagination';
 import Search from './Component/Search';
 
-Shop.propTypes = {
-
-};
-
-function Shop(props) {
+function Shop() {
 
     const { id } = useParams()
 
@@ -32,7 +27,6 @@ function Shop(props) {
     //Hàm này dùng để thay đổi state pagination.page
     //Nó sẽ truyền xuống Component con và nhận dữ liệu từ Component con truyền lên
     const handlerChangePage = (value) => {
-        console.log("Value: ", value)
 
         //Sau đó set lại cái pagination để gọi chạy làm useEffect gọi lại API pagination
         setPagination({
@@ -114,7 +108,7 @@ function Shop(props) {
 
         const fetchData = async () => {
 
-            const query_male = '?'+queryString.stringify('kitchen')
+            const query_male = '?' + queryString.stringify('kitchen')
             console.log(query_male)
             const response_male = await Product.Get_Category_Gender(query_male)
             console.log(response_male)
@@ -129,7 +123,7 @@ function Shop(props) {
 
     const handler_Search = (value) => {
         console.log("Search: ", value)
-        
+
         setPagination({
             page: pagination.page,
             count: pagination.count,
@@ -138,16 +132,6 @@ function Shop(props) {
         })
 
     }
-//     useEffect(() => {
-//     const fetchData = async () => {
-//         const response = await Product.Get_Category_Gender("?male");
-//         set_male(response);
-//     }
-//     fetchData()
-// });
-//     console.log(male)
-
-
 
     return (
         <div>
@@ -175,7 +159,7 @@ function Shop(props) {
                                 </div>
                                 <div className="li-blog-sidebar pt-25">
                                     <ul className="li-blog-archive">
-                                    <h4 className="li-blog-sidebar-title"><li><Link to="/shop/all" style={id === 'all' ? { cursor: 'pointer', color: '#fed700' } : { cursor: 'pointer' }}>All</Link></li></h4>
+                                        <h4 className="li-blog-sidebar-title"><li><Link to="/shop/all" style={id === 'all' ? { cursor: 'pointer', color: '#fed700' } : { cursor: 'pointer' }}>All</Link></li></h4>
                                     </ul>
                                 </div>
                                 <div className="li-blog-sidebar pt-25">
@@ -183,7 +167,12 @@ function Shop(props) {
                                         {
                                             male && male.map(value => (
                                                 <li key={value._id}>
-                                                    <h4 className="li-blog-sidebar-title"><Link to={`/shop/${value._id}`} style={id === value._id ? { cursor: 'pointer', color: '#fed700' } : { cursor: 'pointer' }}>{value.category}</Link></h4>
+                                                    <h4 className="li-blog-sidebar-title"><Link onClick={() => setPagination({
+                                                        page: '1',
+                                                        count: '9',
+                                                        search: '',
+                                                        category: id
+                                                    })} to={`/shop/${value._id}`} style={id === value._id ? { cursor: 'pointer', color: '#fed700' } : { cursor: 'pointer' }}>{value.category}</Link></h4>
                                                 </li>
                                             ))
                                         }

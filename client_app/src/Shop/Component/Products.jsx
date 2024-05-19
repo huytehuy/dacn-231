@@ -51,7 +51,7 @@ function Products(props) {
                                                 <li><i className="fa fa-star-o"></i></li>
                                                 <li><i className="fa fa-star-o"></i></li>
                                                 <li><i className="fa fa-star-o"></i></li>
-                                                <li><i className="fa fa-star-o"></i></li>
+                                                <li className="no-star"><i className="fa fa-star-o"></i></li>
                                             </ul>
                                         </div>
                                     </div>
