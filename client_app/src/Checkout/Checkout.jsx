@@ -70,7 +70,7 @@ function Checkout(props) {
 
         const total = Number(sum_price)
 
-        if (localStorage.getItem('coupon')){
+        if (localStorage.getItem('coupon')) {
             // GET localStorage
             const coupon = JSON.parse(localStorage.getItem('coupon'))
 
@@ -81,8 +81,8 @@ function Checkout(props) {
             localStorage.setItem("total_price", newTotal)
 
             set_total_price(newTotal)
-        }else{
-            
+        } else {
+
             localStorage.setItem("total_price", total + Number(price))
 
             set_total_price(total + Number(price))
@@ -150,7 +150,7 @@ function Checkout(props) {
                 set_show_error(true)
             } else {
                 if (information.email === '') {
-                    
+
                     localStorage.setItem('information', JSON.stringify(information))
 
                     set_show_error(true)
@@ -178,7 +178,7 @@ function Checkout(props) {
 
         set_load_order(true)
 
-        if (localStorage.getItem("id_coupon")){
+        if (localStorage.getItem("id_coupon")) {
 
             const responseUpdate = await CouponAPI.updateCoupon(localStorage.getItem("id_coupon"))
             console.log(responseUpdate)
@@ -240,7 +240,7 @@ function Checkout(props) {
             feeship: price,
             address: information.address,
             email: information.email,
-            subtotal : total_price-price,
+            subtotal: total_price - price,
             data_carts: data_carts,
         }
 
@@ -280,7 +280,7 @@ function Checkout(props) {
 
     //--------------- Xử lý Google API ------------------//
 
-    
+
 
     const [error_address, set_error_address] = useState(false)
 
@@ -364,25 +364,25 @@ function Checkout(props) {
                 <div className="container">
                     <div className="breadcrumb-content">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li className="active">Checkout</li>
+                            <li><a href="index.html">Trang chủ</a></li>
+                            <li className="active">Thanh toán</li>
                         </ul>
                     </div>
                 </div>
             </div>
 
             <div className="container" style={{ paddingTop: '3rem', paddingBottom: '3rem' }}>
-                
+
                 {
                     load_map && (
                         <div className="row">
                             <div className="col-lg-6 col-12 pb-5">
                                 <div className="checkbox-form">
-                                    <h3>Check Distance</h3>
+                                    <h3>THÔNG TIN GIAO HÀNG</h3>
                                     <div className="row">
                                         <div className="col-md-12">
                                             <div className="checkout-form-list">
-                                                <label>From <span className="required">*</span></label>
+                                                <label>Từ <span className="required">*</span></label>
                                                 <input type="text" name="from"
                                                     id="from_places"
                                                     disabled="true"
@@ -393,26 +393,32 @@ function Checkout(props) {
                                         </div>
                                         <div className="col-md-12">
                                             <div className="checkout-form-list">
-                                                <label>To <span className="required">*</span></label>
+                                                <label>Đến <span className="required">*</span></label>
                                                 <input type="text"
                                                     id="to_places"
-                                                    placeholder="Enter A Location"
+                                                    placeholder="Nhập địa chỉ"
                                                     value={information.address}
                                                     onChange={onChangeAddress} />
                                                 {error_address && <span style={{ color: 'red' }}>* Address is required</span>}
-                                                <input id="destination" name="destination" required="" type="hidden"/>
+                                                <input id="destination" name="destination" required="" type="hidden" />
                                             </div>
                                         </div>
                                         <div className="col-md-12">
                                             <div className="checkout-form-list">
                                                 <div className="form-group">
                                                     <label>
-                                                        Travel Mode
-                                                        </label>
+                                                        Phương thức vận chuyển
+                                                    </label>
                                                     <select id="travel_mode" name="travel_mode">
-                                                        <option value="DRIVING">
-                                                            DRIVING
-                                                            </option>
+                                                        <option value="Tiết kiệm ">
+                                                            Tiết kiệm
+                                                        </option>
+                                                        <option value="Hỏa tốc">
+                                                            Hỏa tốc
+                                                        </option>
+                                                        <option value="Tiêu chuẩn">
+                                                            Tiêu chuẩn
+                                                        </option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -421,28 +427,28 @@ function Checkout(props) {
                                             <div id="result" className='hide' >
                                                 <div>
                                                     <label htmlFor="Kilometers">Kilometers:</label>&nbsp;
-                                                        <label id="in_kilo">0</label>
+                                                    <label id="in_kilo">0</label>
                                                 </div>
                                                 <div>
                                                     <label htmlFor="Duration">Duration: </label>&nbsp;
-                                                        <label id="duration_text">0</label>
+                                                    <label id="duration_text">0</label>
                                                 </div>
                                                 <div>
                                                     <label htmlFor="Price">Shipping Cost: </label>&nbsp;
-                                                        <label id="price_shipping">10000</label>
-                                                        &nbsp;<label>VNĐ</label>
+                                                    <label id="price_shipping">10000</label>
+                                                    &nbsp;<label>VNĐ</label>
                                                 </div>
                                             </div>
                                         </div>
                                         <div className="col-md-12">
                                             <div className="order-button-payment">
-                                                <input value="CHECKING" type="submit" id="distance_form" />
+                                                <input value="Kiểm tra" type="submit" id="distance_form" />
                                             </div>
                                         </div>
                                         <div className="col-md-12">
                                             <div className="d-flex justify-content-end">
                                                 <div className="order-button-payment">
-                                                    <input value="Next" onClick={handler_Next} id="distance_next" type="submit" style={{ padding: '.4rem 1.6rem' }} />
+                                                    <input value="Tiếp theo" onClick={handler_Next} id="distance_next" type="submit" style={{ padding: '.4rem 1.6rem' }} />
                                                 </div>
                                             </div>
                                         </div>
@@ -451,8 +457,8 @@ function Checkout(props) {
                             </div>
                             {/* <MapIframeComponent/> */}
                             <div className="col-lg-6 col-12">
-                            <div id="map" style={{ height: '400px', width: '500px' }}></div>
-                            {/* <iframe src="https://storage.googleapis.com/maps-solutions-2qm1w3hy9s/commutes/qop2/commutes.html"
+                                <div id="map" style={{ height: '400px', width: '500px' }}></div>
+                                {/* <iframe src="https://storage.googleapis.com/maps-solutions-2qm1w3hy9s/commutes/qop2/commutes.html"
   width="100%" height="100%"
   loading="lazy">
 </iframe> */}
@@ -461,202 +467,202 @@ function Checkout(props) {
 
                             </div>
 
-                            
+
                         </div>
                     )
-                    
+
                 }
                 {
                     load_order_status && (
                         (
-                        <div className="row">
-                            <div className="col-lg-6 col-12 pb-5">
-                                <form onSubmit={handleSubmit(handler_Checkout)}>
-                                    <div className="checkbox-form">
-                                        <h3>Billing Details</h3>
-                                        <div className="row">
-                                            <div className="col-md-12">
-                                                <div className="checkout-form-list">
-                                                    <label>Full Name <span className="required">*</span></label>
-                                                    <input placeholder="Enter Fullname" type="text" name="fullname"
-                                                        ref={register({ required: true })}
-                                                        value={information.fullname}
-                                                        onChange={onChangeFullname} />
-                                                    {errors.fullname && errors.fullname.type === "required" && <span style={{ color: 'red' }}>* Fullname is required</span>}
+                            <div className="row">
+                                <div className="col-lg-6 col-12 pb-5">
+                                    <form onSubmit={handleSubmit(handler_Checkout)}>
+                                        <div className="checkbox-form">
+                                            <h3>Thông tin đơn hàng</h3>
+                                            <div className="row">
+                                                <div className="col-md-12">
+                                                    <div className="checkout-form-list">
+                                                        <label>Họ và tên <span className="required">*</span></label>
+                                                        <input placeholder="Ví dụ: Nguyễn Văn A" type="text" name="fullname"
+                                                            ref={register({ required: true })}
+                                                            value={information.fullname}
+                                                            onChange={onChangeFullname} />
+                                                        {errors.fullname && errors.fullname.type === "required" && <span style={{ color: 'red' }}>* Fullname is required</span>}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div className="col-md-12">
-                                                <div className="checkout-form-list">
-                                                    <label>Phone Number <span className="required">*</span></label>
-                                                    <input placeholder="Enter Phone Number" type="text" name="phone"
-                                                        ref={register({ required: true })}
-                                                        value={information.phone}
-                                                        onChange={onChangePhone} />
-                                                    {errors.phone && errors.phone.type === "required" && <span style={{ color: 'red' }}>* Phone Number is required</span>}
+                                                <div className="col-md-12">
+                                                    <div className="checkout-form-list">
+                                                        <label>Số điện thoại <span className="required">*</span></label>
+                                                        <input placeholder="123456..." type="text" name="phone"
+                                                            ref={register({ required: true })}
+                                                            value={information.phone}
+                                                            onChange={onChangePhone} />
+                                                        {errors.phone && errors.phone.type === "required" && <span style={{ color: 'red' }}>* Phone Number is required</span>}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div className="col-md-12">
-                                                <div className="checkout-form-list">
-                                                    <label>Address <span className="required">*</span></label>
-                                                    <input placeholder="Street address" type="text" name="address"
-                                                        ref={register({ required: true })}
-                                                        value={information.address}
-                                                        onChange={onChangeAddress}
-                                                        disabled
+                                                <div className="col-md-12">
+                                                    <div className="checkout-form-list">
+                                                        <label>Địa chỉ <span className="required">*</span></label>
+                                                        <input placeholder="Quận 10, Thành phố Hồ Chí Minh" type="text" name="address"
+                                                            ref={register({ required: true })}
+                                                            value={information.address}
+                                                            onChange={onChangeAddress}
+                                                            disabled
                                                         />
-                                                    {errors.address && errors.address.type === "required" && <span style={{ color: 'red' }}>* Address is required</span>}
+                                                        {errors.address && errors.address.type === "required" && <span style={{ color: 'red' }}>* Address is required</span>}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div className="col-md-12">
-                                                <div className="checkout-form-list">
-                                                    <label>Email <span className="required">*</span></label>
-                                                    <input placeholder="Enter Email" type="email" name="email"
-                                                        ref={register({ required: true })}
-                                                        value={information.email}
-                                                        onChange={onChangeEmail} />
-                                                    {errors.email && errors.email.type === "required" && <span style={{ color: 'red' }}>* Email is required</span>}
+                                                <div className="col-md-12">
+                                                    <div className="checkout-form-list">
+                                                        <label>Email <span className="required">*</span></label>
+                                                        <input placeholder="sample@gmail.com" type="email" name="email"
+                                                            ref={register({ required: true })}
+                                                            value={information.email}
+                                                            onChange={onChangeEmail} />
+                                                        {errors.email && errors.email.type === "required" && <span style={{ color: 'red' }}>* Email is required</span>}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div className="col-md-12">
-                                                <div className="order-button-payment">
-                                                    {
-                                                        redirect && <Redirect to="/success" />
-                                                    }
-                                                    <input value="pay with cash" type="submit" />
+                                                <div className="col-md-12">
+                                                    <div className="order-button-payment">
+                                                        {
+                                                            redirect && <Redirect to="/success" />
+                                                        }
+                                                        <input value="Tiền mặt" type="submit" />
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div className="col-lg-6 col-12">
-                                <div className="your-order">
-                                    <h3>Your order</h3>
-                                    <div className="your-order-table table-responsive">
-                                        <table className="table">
-                                            <thead>
-                                                <tr>
-                                                    <th className="cart-product-name">Product</th>
-                                                    <th className="cart-product-total">Total</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {
-                                                    carts && carts.map(value => (
-                                                        <tr className="cart_item" key={value._id}>
-                                                            <td className="cart-product-name">{value.name_product}<strong className="product-quantity"> × {value.count}</strong></td>
-                                                            <td className="cart-product-total"><span className="amount">{new Intl.NumberFormat('vi-VN',{style: 'decimal',decimal: 'VND'}).format(parseInt(value.price_product) * parseInt(value.count)) + ' VNĐ'}</span></td>
-                                                        </tr>
-                                                    ))
-                                                }
-                                            </tbody>
-                                            <tfoot>
-                                                <tr className="cart-subtotal">
-                                                    <th>Shipping Cost</th>
-                                                    <td><span className="amount">{new Intl.NumberFormat('vi-VN',{style: 'decimal',decimal: 'VND'}).format(price) + ' VNĐ'}</span></td>
-                                                </tr>
-                                                <tr className="cart-subtotal">
-                                                    <th>Discount</th>
-                                                    <td><span className="amount">{new Intl.NumberFormat('vi-VN',{style: 'decimal',decimal: 'VND'}).format(discount) + ' VNĐ'}</span></td>
-                                                </tr>
-                                                <tr className="order-total">
-                                                    <th>Order Total</th>
-                                                    <td><strong><span className="amount">{new Intl.NumberFormat('vi-VN',{style: 'decimal',decimal: 'VND'}).format(total_price) + ' VNĐ'}</span></strong></td>
-                                                </tr>
-                                            </tfoot>
-                                        </table>
-                                    </div>
-                                    <div className="payment-method">
-                                        <div className="payment-accordion">
-                                            <div id="accordion">
-                                                <div className="card">
-                                                    <div className="card-header" id="#payment-3">
-                                                        <h5 className="panel-title">
-                                                            <a className="collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                                PayPal
-                                                </a>
-                                                        </h5>
-                                                    </div>
-                                                    <div>
-                                                        <div className="card-body">
-                                                            {
-                                                                show_error ? 'Please Checking Information!' :
-                                                                    <Paypal
-                                                                        information={information}
-                                                                        total={total_price}
-                                                                        Change_Load_Order={Change_Load_Order}
-                                                                        from={from}
-                                                                        distance={distance}
-                                                                        duration={duration}
-                                                                        price={price}
-                                                                    />
-                                                            }
+                                    </form>
+                                </div>
+                                <div className="col-lg-6 col-12">
+                                    <div className="your-order">
+                                        <h3>Đơn hàng</h3>
+                                        <div className="your-order-table table-responsive">
+                                            <table className="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th className="cart-product-name">Sản phẩm</th>
+                                                        <th className="cart-product-total">Tổng cộng</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {
+                                                        carts && carts.map(value => (
+                                                            <tr className="cart_item" key={value._id}>
+                                                                <td className="cart-product-name">{value.name_product}<strong className="product-quantity"> × {value.count}</strong></td>
+                                                                <td className="cart-product-total"><span className="amount">{new Intl.NumberFormat('vi-VN', { style: 'decimal', decimal: 'VND' }).format(parseInt(value.price_product) * parseInt(value.count)) + ' VNĐ'}</span></td>
+                                                            </tr>
+                                                        ))
+                                                    }
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr className="cart-subtotal">
+                                                        <th>Phí giao hàng</th>
+                                                        <td><span className="amount">{new Intl.NumberFormat('vi-VN', { style: 'decimal', decimal: 'VND' }).format(price) + ' VNĐ'}</span></td>
+                                                    </tr>
+                                                    <tr className="cart-subtotal">
+                                                        <th>Giảm giá</th>
+                                                        <td><span className="amount">{new Intl.NumberFormat('vi-VN', { style: 'decimal', decimal: 'VND' }).format(discount) + ' VNĐ'}</span></td>
+                                                    </tr>
+                                                    <tr className="order-total">
+                                                        <th>Tổng hóa đơn</th>
+                                                        <td><strong><span className="amount">{new Intl.NumberFormat('vi-VN', { style: 'decimal', decimal: 'VND' }).format(total_price) + ' VNĐ'}</span></strong></td>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                        <div className="payment-method">
+                                            <div className="payment-accordion">
+                                                <div id="accordion">
+                                                    <div className="card">
+                                                        <div className="card-header" id="#payment-3">
+                                                            <h5 className="panel-title">
+                                                                <a className="collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                                    PayPal
+                                                                </a>
+                                                            </h5>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <div className="card">
-                                                    <div className="card-header" id="#payment-3">
-                                                        <h5 className="panel-title">
-                                                            <a className="collapsed" data-toggle="collapse" data-target="#collapseMomo" aria-expanded="true" aria-controls="collapseMomo">
-                                                                MoMo
-                                                        </a>
-                                                        </h5>
-                                                    </div>
-                                                    <div>
-                                                        <div className="card-body">
-                                                            {
-                                                                show_error ? 'Please Checking Information!' :
-                                                                <div>
-                                                                    <img src={LogoMomo} width="100" onClick={handlerMomo}
-                                                                    style={{ cursor: 'pointer' }} />
-                                                                    <MoMo 
-                                                                        orderID={orderID}
-                                                                        total={total_price}
+                                                        <div>
+                                                            <div className="card-body">
+                                                                {
+                                                                    show_error ? 'Vui lòng kiểm tra thông tin!' :
+                                                                        <Paypal
+                                                                            information={information}
+                                                                            total={total_price}
+                                                                            Change_Load_Order={Change_Load_Order}
+                                                                            from={from}
+                                                                            distance={distance}
+                                                                            duration={duration}
+                                                                            price={price}
                                                                         />
-                                                                </div>  
-                                                            }
+                                                                }
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-
-
-                                                <div className="card" style={{marginTop:10}}>
-                                                    <div className="card-header" id="#payment-3">
-                                                        <h5 className="panel-title">
-                                                            <a className="collapsed" data-toggle="collapse" data-target="#collapseMomo" aria-expanded="true" aria-controls="collapseMomo">
-                                                                QR
-                                                        </a>
-                                                        </h5>
+                                                <div>
+                                                    <div className="card">
+                                                        <div className="card-header" id="#payment-3">
+                                                            <h5 className="panel-title">
+                                                                <a className="collapsed" data-toggle="collapse" data-target="#collapseMomo" aria-expanded="true" aria-controls="collapseMomo">
+                                                                    MoMo
+                                                                </a>
+                                                            </h5>
+                                                        </div>
+                                                        <div>
+                                                            <div className="card-body">
+                                                                {
+                                                                    show_error ? 'Vui lòng kiểm tra thông tin!' :
+                                                                        <div>
+                                                                            <img src={LogoMomo} width="100" onClick={handlerMomo}
+                                                                                style={{ cursor: 'pointer' }} />
+                                                                            <MoMo
+                                                                                orderID={orderID}
+                                                                                total={total_price}
+                                                                            />
+                                                                        </div>
+                                                                }
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div>
-                                                        <div className="card-body">
-                                                            {
-                                                                show_error ? 'Please Checking Information!' :
-                                                                <div onClick={()=>Modal_Image}>
-                                                                    {/* <img src={LogoQR} width="100" onClick={handlerMomo}
+
+
+                                                    {/* <div className="card" style={{ marginTop: 10 }}>
+                                                        <div className="card-header" id="#payment-3">
+                                                            <h5 className="panel-title">
+                                                                <a className="collapsed" data-toggle="collapse" data-target="#collapseMomo" aria-expanded="true" aria-controls="collapseMomo">
+                                                                    QR
+                                                                </a>
+                                                            </h5>
+                                                        </div>
+                                                        <div>
+                                                            <div className="card-body">
+                                                                {
+                                                                    show_error ? 'Vui lòng kiểm tra thông tin!' :
+                                                                        <div onClick={() => Modal_Image}>
+                                                                            { <img src={LogoQR} width="100" onClick={handlerMomo}
                                                                     style={{ cursor: 'pointer' }} />
                                                                     <MoMo 
                                                                         orderID={orderID}
                                                                         total={total_price}
-                                                                        /> */}
-                                                                {/* Click to payment */}
-                                                                <Button variant="primary" onClick={() => setModalShow(true)}>
-        Pay with QR
-      </Button>
+                                                                        />}
 
-      <Modal_Image
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-      />
+                                                                            <Button variant="primary" onClick={() => setModalShow(true)}>
+                                                                                Thanh toán QR
+                                                                            </Button>
 
-                                                      </div>  
-                                                            }
+                                                                            <Modal_Image
+                                                                                show={modalShow}
+                                                                                onHide={() => setModalShow(false)}
+                                                                            />
+
+                                                                        </div>
+                                                                }
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-{/* 
+                                                    </div> */}
+                                                    {/* 
                                                 <div className="card">                
                                                 <div className="card-header" id="#payment-3">
                                                         <h5 className="panel-title">
@@ -681,13 +687,13 @@ function Checkout(props) {
                                                         </div>
                                                     </div>
                                                 </div> */}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    )
+                        )
                     )
                 }
             </div>
