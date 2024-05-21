@@ -16,19 +16,13 @@ import LogoMomo from './momo-png/momo_icon_square_pinkbg_RGB.png'
 import Modal_Image from '../Modal';
 import Button from 'react-bootstrap/Button';
 
-// import GoogleMap from '../GoogleMap/index'
-
 const socket = io('https://dacn-231-t581.onrender.com', {
     transports: ['websocket'], jsonp: false
 });
 socket.connect();
 
-Checkout.propTypes = {
 
-};
-
-
-function Checkout(props) {
+function Checkout() {
 
     const [orderID, setOrderID] = useState('')
 
@@ -52,6 +46,7 @@ function Checkout(props) {
 
         if (check_action) {
 
+            set_carts(JSON.parse(localStorage.getItem('carts')))
             set_carts(JSON.parse(localStorage.getItem('carts')))
 
             Sum_Price(JSON.parse(localStorage.getItem('carts')), 0)
@@ -97,7 +92,7 @@ function Checkout(props) {
         fullname: '',
         phone: '',
         address: '',
-        email: ''
+        email: '',
     })
 
     const onChangeFullname = (e) => {
@@ -165,6 +160,7 @@ function Checkout(props) {
     const { register, handleSubmit, errors } = useForm();
 
     const [redirect, set_redirect] = useState(false)
+    const [hide, set_Hide] = useState(false)
 
 
     const [load_order, set_load_order] = useState(false)
@@ -175,8 +171,9 @@ function Checkout(props) {
 
     // Hàm này dùng để thanh toán offline
     const handler_Checkout = async (data) => {
+        
 
-        set_load_order(true)
+        // set_load_order(true)
 
         if (localStorage.getItem("id_coupon")) {
 
@@ -424,25 +421,25 @@ function Checkout(props) {
                                             </div>
                                         </div>
                                         <div className="col-md-12">
-                                            <div id="result" className='hide' >
+                                            {hide&&<div id="result" >
                                                 <div>
-                                                    <label htmlFor="Kilometers">Kilometers:</label>&nbsp;
-                                                    <label id="in_kilo">0</label>
+                                                    <label htmlFor="Kilometers">Khoảng cách:</label>&nbsp;
+                                                        <label id="in_kilo">5 km</label>
                                                 </div>
                                                 <div>
-                                                    <label htmlFor="Duration">Duration: </label>&nbsp;
-                                                    <label id="duration_text">0</label>
+                                                    <label htmlFor="Duration">Thời gian: </label>&nbsp;
+                                                        <label id="duration_text">15 phút</label>
                                                 </div>
                                                 <div>
-                                                    <label htmlFor="Price">Shipping Cost: </label>&nbsp;
-                                                    <label id="price_shipping">10000</label>
-                                                    &nbsp;<label>VNĐ</label>
+                                                    <label htmlFor="Price">Phí giao hàng: </label>&nbsp;
+                                                        <label id="price_shipping">30.000</label>
+                                                        &nbsp;<label>VNĐ</label>
                                                 </div>
-                                            </div>
+                                            </div>}
                                         </div>
                                         <div className="col-md-12">
                                             <div className="order-button-payment">
-                                                <input value="Kiểm tra" type="submit" id="distance_form" />
+                                                <input value="KIỂM TRA" style={{textAlign:'center'}} onClick={()=>set_Hide(true)} id="distance_form" />
                                             </div>
                                         </div>
                                         <div className="col-md-12">
@@ -457,7 +454,9 @@ function Checkout(props) {
                             </div>
                             {/* <MapIframeComponent/> */}
                             <div className="col-lg-6 col-12">
-                                <div id="map" style={{ height: '400px', width: '500px' }}></div>
+                                <div id="map" style={{ height: '700px', width: '700px' }}>
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d346.4392710449575!2d106.65763344142754!3d10.771971600261708!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752ec3c161a3fb%3A0xef77cd47a1cc691e!2sHo%20Chi%20Minh%20City%20University%20of%20Technology%20(HCMUT)!5e0!3m2!1sen!2sus!4v1699190219273!5m2!1sen!2sus" width="700" height="700" style={{ border: '0' }} allowfullscreen="" loading="lazy"></iframe>
+                                </div>
                                 {/* <iframe src="https://storage.googleapis.com/maps-solutions-2qm1w3hy9s/commutes/qop2/commutes.html"
   width="100%" height="100%"
   loading="lazy">
