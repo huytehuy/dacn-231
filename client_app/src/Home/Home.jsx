@@ -122,14 +122,21 @@ function Home() {
                         <div className="col-lg-4 col-md-4 text-center">
                             <div className="single-banner">
                                 <a href="#">
-                                    <img style={{ height: 340 }} src="https://img.freepik.com/free-photo/sale-with-special-discount-vr-glasses_23-2150040388.jpg?size=626&ext=jpg&ga=GA1.1.1497148693.1705063387&semt=ais" alt="Li's Static Banner" />
+                                    <img  src="https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:90/plain/https://dashboard.cellphones.com.vn/storage/gian-hang-samsung-home.png" alt="Li's Static Banner" />
                                 </a>
                             </div>
                         </div>
                         <div className="col-lg-4 col-md-4 text-center pt-xs-30">
                             <div className="single-banner">
                                 <a href="#">
-                                    <img src="https://image.freepik.com/free-vector/fashion-sale-banners_52683-11557.jpg" alt="Li's Static Banner" />
+                                    <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:90/plain/https://dashboard.cellphones.com.vn/storage/apple-chinh-hang-home.jpg" alt="Li's Static Banner" />
+                                </a>
+                            </div>
+                        </div>
+                        <div className="col-lg-4 col-md-4 text-center pt-xs-30">
+                            <div className="single-banner">
+                                <a href="#">
+                                    <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:90/plain/https://dashboard.cellphones.com.vn/storage/SIS%20asus.png" alt="Li's Static Banner" />
                                 </a>
                             </div>
                         </div>
