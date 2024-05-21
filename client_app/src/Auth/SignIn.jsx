@@ -80,8 +80,8 @@ function SignIn(props) {
                 <div className="container">
                     <div className="breadcrumb-content">
                         <ul>
-                            <li><Link to="/">Home</Link></li>
-                            <li className="active">Login</li>
+                            <li><Link to="/">TRANG CHỦ</Link></li>
+                            <li className="active">ĐĂNG NHẬP</li>
                         </ul>
                     </div>
                 </div>
@@ -92,29 +92,29 @@ function SignIn(props) {
                         <div className="col-sm-12 col-md-12 col-xs-12 col-lg-6 mb-30 mr_signin">
                             <form action="#" >
                                 <div className="login-form">
-                                    <h4 className="login-title">Login</h4>
+                                    <h4 className="login-title">ĐĂNG NHẬP</h4>
                                     <div className="row">
                                         <div className="col-md-12 col-12 mb-20">
-                                            <label>Username *</label>
-                                            <input className="mb-0" type="text" placeholder="Username" value={username} onChange={(e) => set_username(e.target.value)} />
+                                            <label>Tài Khoản *</label>
+                                            <input className="mb-0" type="text" placeholder="Tài Khoản" value={username} onChange={(e) => set_username(e.target.value)} />
                                             {
-                                                error_username && <span style={{ color: 'red' }}>* Wrong Username!</span>
+                                                error_username && <span style={{ color: 'red' }}>* Sai Tài Khoản!</span>
                                             }
                                         </div>
                                         <div className="col-12 mb-20">
-                                            <label>Password</label>
-                                            <input className="mb-0" type="password" placeholder="Password" value={password} onChange={(e) => set_password(e.target.value)} />
+                                            <label>Mật Khẩu</label>
+                                            <input className="mb-0" type="password" placeholder="Mật Khẩu" value={password} onChange={(e) => set_password(e.target.value)} />
                                             {
-                                                error_password && <span style={{ color: 'red' }}>* Wrong Password!</span>
+                                                error_password && <span style={{ color: 'red' }}>* Sai Mật Khẩu!</span>
                                             }
                                         </div>
                                         <div className="col-md-8">
                                             <div className="check-box d-inline-block ml-0 ml-md-2 mt-10">
-                                                <Link to="/signup">Do You Have Account?</Link>
+                                                <Link to="/signup">Bạn đã có tài khoản chưa?</Link>
                                             </div>
                                         </div>
                                         <div className="col-md-4 mt-10 mb-20 text-left text-md-right">
-                                            <a href="#"> Forgotten pasward?</a>
+                                            <a href="#"> Quên mật khẩu?</a>
                                         </div>
                                         <div className="col-md-12">
                                             {

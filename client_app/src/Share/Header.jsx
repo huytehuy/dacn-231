@@ -307,11 +307,11 @@ function Header(props) {
                                     <nav>
                                         <ul>
 
-                                            <li className="dropdown-holder"><Link to="/">Home</Link></li>
-                                            <li className="megamenu-holder"><Link to="/shop/all">Menu</Link>
+                                            <li className="dropdown-holder"><Link to="/">TRANG CHỦ</Link></li>
+                                            <li className="megamenu-holder"><Link to="/shop/all">DANH MỤC</Link>
                                             </li>
-                                            <li><Link to="/event">Event</Link></li>
-                                            <li><Link to="/contact">Contact</Link></li>
+                                            <li><Link to="/event">SỰ KIỆN</Link></li>
+                                            <li><Link to="/contact">LIỆN HỆ</Link></li>
                                         </ul>
                                     </nav>
                                     <div >
@@ -324,7 +324,7 @@ function Header(props) {
                                                         <div className="hb-menu">
                                                             <nav>
                                                                 <ul>
-                                                                    <li onClick={() => handleSignInClick()}>SIGN IN</li>
+                                                                    <li onClick={() => handleSignInClick()}>ĐĂNG NHẬP</li>
                                                                 </ul>
                                                             </nav>
                                                         </div>
