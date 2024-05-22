@@ -59,7 +59,7 @@ function Products(props) {
                                                                             </>
                                                                         );
                                                                     } else {
-                                                                        return <span className="sticker">New</span>;
+                                                                        return <span className="sticker">Mới</span>;
                                                                     }
                                                                 })()
                                                             }

@@ -139,8 +139,8 @@ function Shop() {
                 <div className="container">
                     <div className="breadcrumb-content">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li className="active">Shop</li>
+                            <li><a href="index.html">Trang chủ</a></li>
+                            <li className="active">Danh mục</li>
                         </ul>
                     </div>
                 </div>
@@ -159,7 +159,7 @@ function Shop() {
                                 </div>
                                 <div className="li-blog-sidebar pt-25">
                                     <ul className="li-blog-archive">
-                                        <h4 className="li-blog-sidebar-title"><li><Link to="/shop/all" style={id === 'all' ? { cursor: 'pointer', color: '#fed700' } : { cursor: 'pointer' }}>All</Link></li></h4>
+                                        <h4 className="li-blog-sidebar-title"><li><Link to="/shop/all" style={id === 'all' ? { cursor: 'pointer', color: '#fed700' } : { cursor: 'pointer' }}>Tất cả</Link></li></h4>
                                     </ul>
                                 </div>
                                 <div className="li-blog-sidebar pt-25">
@@ -187,11 +187,11 @@ function Shop() {
                             <div className="shop-top-bar">
                                 <div className="product-select-box">
                                     <div className="product-short">
-                                        <p>Sort By:</p>
+                                        <p>Sắp xếp theo:</p>
                                         <select className="nice-select">
-                                            <option value="trending">Relevance</option>
-                                            <option value="rating">Price (Low &gt; High)</option>
-                                            <option value="rating">Price (High &gt; Low)</option>
+                                            <option value="trending">Đánh giá</option>
+                                            <option value="rating">Giá (Thấp &gt; Cao)</option>
+                                            <option value="rating">Giá (Cao &gt; Thấp)</option>
                                         </select>
                                     </div>
                                 </div>
@@ -206,7 +206,7 @@ function Shop() {
                                     <div className="paginatoin-area">
                                         <div className="row">
                                             <div className="col-lg-6 col-md-6">
-                                                <p>Showing 1-9 of 9 item(s)</p>
+                                                <p>Hiển thị 1-9 sản phẩm</p>
                                             </div>
                                             <Pagination pagination={pagination} handlerChangePage={handlerChangePage} totalPage={totalPage} />
                                         </div>

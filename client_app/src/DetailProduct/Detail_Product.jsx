@@ -160,8 +160,8 @@ function Detail_Product() {
                 <div className="container">
                     <div className="breadcrumb-content">
                         <ul>
-                            <li><Link to="/">Home</Link></li>
-                            <li className="active">Detail</li>
+                            <li><Link to="/">Trang chủ</Link></li>
+                            <li className="active">{product.name_product}</li>
                         </ul>
                     </div>
                 </div>
@@ -203,14 +203,14 @@ function Detail_Product() {
                                     <div className="single-add-to-cart">
                                         <form action="#" className="cart-quantity">
                                             <div className="quantity">
-                                                <label>Quantity</label>
+                                                <label>Số lượng:</label>
                                                 <div className="cart-plus-minus">
                                                     <input className="cart-plus-minus-box" value={count} type="text" onChange={(e) => set_count(e.target.value)} />
                                                     <div className="dec qtybutton" onClick={downCount}><i className="fa fa-angle-down"></i></div>
                                                     <div className="inc qtybutton" onClick={upCount}><i className="fa fa-angle-up"></i></div>
                                                 </div>
                                             </div>
-                                            <a href="#" className="add-to-cart" type="submit" onClick={handler_addcart}>Add to cart</a>
+                                            <a href="#" className="add-to-cart" type="submit" onClick={handler_addcart}>Thêm vào giỏ hàng</a>
                                         </form>
                                     </div>
                                 </div>
@@ -225,8 +225,10 @@ function Detail_Product() {
                         <div className="col-lg-12">
                             <div className="li-product-tab">
                                 <ul className="nav li-product-menu">
-                                    <li><a className="active" data-toggle="tab" href="#description"><span>Description</span></a></li>
-                                    <li><a data-toggle="tab" href="#reviews"><span>Reviews</span></a></li>
+                                    <li><a className="active" data-toggle="tab" href="#description"><span>Mô tả</span></a></li>
+                                    <li><a data-toggle="tab" href="#reviews"><span>Đánh giá</span></a></li>
+                                    
+                                    
                                 </ul>
                             </div>
                         </div>
@@ -262,7 +264,7 @@ function Detail_Product() {
                                     </div>
 
                                     <div className="review-btn" style={{ marginTop: '2rem' }}>
-                                        <a className="review-links" style={{ cursor: 'pointer', color: '#fff' }} onClick={() => set_modal(true)}>Write Your Review!</a>
+                                        <a className="review-links" style={{ cursor: 'pointer', color: '#fff' }} onClick={() => set_modal(true)}>Viết đánh giá của bạn!</a>
                                     </div>
                                     <Modal onHide={() => set_modal(false)} show={modal} className="modal fade modal-wrapper">
                                         <div className="modal-dialog modal-dialog-centered" role="document">

@@ -206,7 +206,7 @@ function Header(props) {
                         </div>
                         {!isMobile && <div className="col-lg-9 pl-0 ml-sm-15 ml-xs-15 d-flex justify-content-between align-items-center">
                             <form action="/search" className="hm-searchbox" style={{ width: "50px" }} onSubmit={handler_search}>
-                                <input type="text" placeholder="Enter your search key ..." value={keyword_search} onChange={(e) => { set_keyword_search(e.target.value); setSearchVisible(true) }} />
+                                <input type="text" placeholder="Tìm kiếm ..." value={keyword_search} onChange={(e) => { set_keyword_search(e.target.value); setSearchVisible(true) }} />
                                 <button className="li-btn" type="submit"><i className="fa fa-search"></i></button>
                                 {isSearchVisible &&
                                     keyword_search && <div className="show_search_product" ref={searchRef}>
@@ -284,10 +284,10 @@ function Header(props) {
                                                             ))
                                                         }
                                                     </ul>
-                                                    <p className="minicart-total">SUBTOTAL: <span>{new Intl.NumberFormat('vi-VN', { style: 'decimal', decimal: 'VND' }).format(total_price) + ' VNĐ'}</span></p>
+                                                    <p className="minicart-total">TỔNG CỘNG: <span>{new Intl.NumberFormat('vi-VN', { style: 'decimal', decimal: 'VND' }).format(total_price) + ' VNĐ'}</span></p>
                                                     <div className="minicart-button">
                                                         <Link to="/cart" className="li-button li-button-fullwidth li-button-dark">
-                                                            <span>View Full Cart</span>
+                                                            <span>Xem toàn bộ giỏ hàng</span>
                                                         </Link>
                                                     </div>
                                                 </div>
@@ -336,9 +336,9 @@ function Header(props) {
                                                 (
                                                     <div className="ul_setting" ref={userRef}>
                                                         <ul style={{ width: 100 }} className='dropdown' >
-                                                            <li className="li_setting"><Link to={`/profile/${sessionStorage.getItem("id_user")}`} className="li_setting">PROFILE</Link></li>
-                                                            <li className="li_setting"><Link to="/history" className="li_setting">ORDER STATUS</Link></li>
-                                                            <li className="li_setting"><a onClick={handler_logout}>LOG OUT</a></li>
+                                                            <li className="li_setting"><Link to={`/profile/${sessionStorage.getItem("id_user")}`} className="li_setting">Trang cá nhân</Link></li>
+                                                            <li className="li_setting"><Link to="/history" className="li_setting">Tinh trạng đặt hàng</Link></li>
+                                                            <li className="li_setting"><a onClick={handler_logout}>Đăng xuất</a></li>
                                                         </ul>
                                                     </div>
                                                 )}

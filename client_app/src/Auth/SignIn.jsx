@@ -120,7 +120,7 @@ function SignIn(props) {
                                             {
                                                 redirect && <Redirect to={localStorage.getItem('history')}/>
                                             }
-                                            <button className="register-button mt-0" style={{ cursor: 'pointer'}} onClick={handler_signin}>Login</button>
+                                            <button className="register-button mt-0" style={{ cursor: 'pointer'}} onClick={handler_signin}>Đăng nhập</button>
                                         </div>
                                     </div>
                                 </div>

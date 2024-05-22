@@ -96,7 +96,7 @@ function Home_Product(props) {
                                                 <Link to={`/detail/${value._id}`}>
                                                     <img style={{ height: 250, objectFit: 'contain' }} src={value.image} alt="Li's Product Image" />
                                                 </Link>
-                                                <span className="sticker">New</span>
+                                                <span className="sticker">Mới</span>
                                             </div>
                                             <div className="product_desc">
                                                 <div className="product_desc_info">

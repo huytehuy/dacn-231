@@ -6,8 +6,8 @@ function Contact() {
                 <div className="container">
                     <div className="breadcrumb-content">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li className="active">Contact</li>
+                            <li><a href="index.html">Trang chủ</a></li>
+                            <li className="active">Liên hệ</li>
                         </ul>
                     </div>
                 </div>
@@ -20,17 +20,17 @@ function Contact() {
                     <div className="row">
                         <div className="col-lg-5 offset-lg-1 col-md-12 order-1 order-lg-2">
                             <div className="contact-page-side-content">
-                                <h3 className="contact-page-title">Contact Us</h3>
+                                <h3 className="contact-page-title">Liên hệ</h3>
                                 <p className="contact-page-message mb-25">
                                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem sapiente ab cum accusantium, incidunt nihil fugit similique? Reiciendis ex dignissimos libero iusto quos, consequuntur nobis tenetur a minima! Voluptatum, ab?
                                 </p>
                                 <div className="single-contact-block">
-                                    <h4><i className="fa fa-fax"></i> Address</h4>
+                                    <h4><i className="fa fa-fax"></i> Địa chỉ</h4>
                                     <p>268 Lý Thường Kiệt, Phường 14, Quận 10, Thành phố Hồ Chí Minh, Vietnam</p>
                                 </div>
                                 <div className="single-contact-block">
-                                    <h4><i className="fa fa-phone"></i> Phone</h4>
-                                    <p>Mobile: 0366889853</p>
+                                    <h4><i className="fa fa-phone"></i> Số điện thoại</h4>
+                                    <p>Điện thoại: 0366889853</p>
                                 </div>
                                 <div className="single-contact-block last-child">
                                     <h4><i className="fa fa-envelope-o"></i> Email</h4>
@@ -42,27 +42,27 @@ function Contact() {
                         </div>
                         <div className="col-lg-6 col-md-12 order-2 order-lg-1">
                             <div className="contact-form-content pt-sm-55 pt-xs-55">
-                                <h3 className="contact-page-title">Tell Us Your Message</h3>
+                                <h3 className="contact-page-title">Thư góp ý</h3>
                                 <div className="contact-form">
                                     <form id="contact-form" action="http://demo.hasthemes.com/limupa-v3/limupa/mail.php" method="post">
                                         <div className="form-group">
-                                            <label>Your Name <span className="required">*</span></label>
+                                            <label>Họ và tên <span className="required">*</span></label>
                                             <input type="text" name="customerName" id="customername" required />
                                         </div>
                                         <div className="form-group">
-                                            <label>Your Email <span className="required">*</span></label>
+                                            <label>Địa chỉ Email <span className="required">*</span></label>
                                             <input type="email" name="customerEmail" id="customerEmail" required />
                                         </div>
                                         <div className="form-group">
-                                            <label>Subject</label>
+                                            <label>Tiêu đề</label>
                                             <input type="text" name="contactSubject" id="contactSubject" />
                                         </div>
                                         <div className="form-group mb-30">
-                                            <label>Your Message</label>
+                                            <label>Tin nhắn</label>
                                             <textarea name="contactMessage" id="contactMessage" ></textarea>
                                         </div>
                                         <div className="form-group">
-                                            <input type="submit" value="Send" className="li-btn-3" name="submit" />
+                                            <input type="submit" value="Gửi" className="li-btn-3" name="submit" />
                                         </div>
                                     </form>
                                 </div>

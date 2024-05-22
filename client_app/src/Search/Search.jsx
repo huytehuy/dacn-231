@@ -85,7 +85,7 @@ function Search(props) {
                                                             <Link to={`/detail/${value._id}`}>
                                                                 <img src={value.image} alt="Li's Product Image" />
                                                             </Link>
-                                                            <span className="sticker">New</span>
+                                                            <span className="sticker">Mới</span>
                                                         </div>
                                                     </div>
                                                     <div className="col-lg-5 col-md-7">

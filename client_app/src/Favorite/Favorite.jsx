@@ -12,8 +12,8 @@ function Favorite(props) {
                 <div class="container">
                     <div class="breadcrumb-content">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li class="active">Wishlist</li>
+                            <li><a href="index.html">Trang chủ</a></li>
+                            <li class="active">Danh sách yêu thích</li>
                         </ul>
                     </div>
                 </div>
