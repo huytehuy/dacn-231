@@ -270,15 +270,15 @@ function Detail_Product() {
                                         <div className="modal-dialog modal-dialog-centered" role="document">
                                             <div className="modal-content">
                                                 <div className="modal-body">
-                                                    <h3 className="review-page-title">Write Your Review</h3>
+                                                    <h3 className="review-page-title">Viết đánh giá</h3>
                                                     <div className="modal-inner-area row">
                                                         <div className="col-lg-6">
                                                             <div className="li-review-product">
                                                                 <img src={product.image} alt="Li's Product" style={{ width: '20rem' }} />
                                                                 <div className="li-review-product-desc">
-                                                                    <p className="li-product-name">Today is a good day Framed poster</p>
+                                                                    <p className="li-product-name">{product.name_product}</p>
                                                                     <p>
-                                                                        <span>Beach Camera Exclusive Bundle - Includes Two Samsung Radiant 360 R3 Wi-Fi Bluetooth Speakers. Fill The Entire Room With Exquisite Sound via Ring Radiator Technology. Stream And Control R3 Speakers Wirelessly With Your Smartphone. Sophisticated, Modern Design </span>
+                                                                        <span>{product.describe}</span>
                                                                     </p>
                                                                 </div>
                                                             </div>
@@ -287,10 +287,10 @@ function Detail_Product() {
                                                             <div className="li-review-content">
                                                                 <div className="feedback-area">
                                                                     <div className="feedback">
-                                                                        <h3 className="feedback-title">Our Feedback</h3>
+                                                                        <h3 className="feedback-title">Phản hồi</h3>
                                                                         <form action="#">
                                                                             <p className="your-opinion">
-                                                                                <label>Your Rating</label>
+                                                                                <label>Đánh giá</label>
                                                                                 <span>
                                                                                     <select className="star-rating" onChange={(e) => set_star(e.target.value)}>
                                                                                         <option value="1">1</option>
@@ -302,16 +302,16 @@ function Detail_Product() {
                                                                                 </span>
                                                                             </p>
                                                                             <p className="feedback-form">
-                                                                                <label htmlFor="feedback">Your Review</label>
+                                                                                <label htmlFor="feedback">Đánh giá của bạn</label>
                                                                                 <textarea id="feedback" name="comment" cols="45" rows="8" aria-required="true" onChange={(e) => set_comment(e.target.value)}></textarea>
                                                                                 {
-                                                                                    validation_comment && <span style={{ color: 'red' }}>* This is required!</span>
+                                                                                    validation_comment && <span style={{ color: 'red' }}>* Vui lòng nhập đánh giá!</span>
                                                                                 }
                                                                             </p>
                                                                             <div className="feedback-input">
                                                                                 <div className="feedback-btn pb-15">
-                                                                                    <a className="close" onClick={() => set_modal(false)}>Close</a>
-                                                                                    <a style={{ cursor: 'pointer' }} onClick={handler_Comment}>Submit</a>
+                                                                                    <a className="close" onClick={() => set_modal(false)}>Đóng</a>
+                                                                                    <a style={{ cursor: 'pointer' }} onClick={handler_Comment}>Gửi</a>
                                                                                 </div>
                                                                             </div>
                                                                         </form>
