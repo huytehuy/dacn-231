@@ -311,7 +311,7 @@ function Header(props) {
                                             <li className="megamenu-holder"><Link to="/shop/all">DANH MỤC</Link>
                                             </li>
                                             <li><Link to="/event">SỰ KIỆN</Link></li>
-                                            <li><Link to="/contact">LIỆN HỆ</Link></li>
+                                            <li><Link to="/contact">LIÊN HỆ</Link></li>
                                         </ul>
                                     </nav>
                                     <div >
