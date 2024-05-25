@@ -105,7 +105,7 @@ function Home() {
                         <div>
                             <div className="carousel-inner">
                                 <div className="single-slide align-center-left animation-style-01 bg-1"
-                                    style={{ backgroundImage: `url(https://scontent.fsgn5-9.fna.fbcdn.net/v/t39.30808-6/242287014_4377575552336916_7564812452566810421_n.png?_nc_cat=105&ccb=1-7&_nc_sid=5f2048&_nc_ohc=dvxO-hyXqzUQ7kNvgH3xNqx&_nc_ht=scontent.fsgn5-9.fna&oh=00_AYDiFcMq2D9JQcmxTu8SlDPEwT_iEn4oqYe4LM8tEP4_lg&oe=6652062C)` }}>
+                                    style={{ backgroundImage: `url(https://scontent.fsgn5-9.fna.fbcdn.net/v/t39.30808-6/242287014_4377575552336916_7564812452566810421_n.png?_nc_cat=105&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeGr8J5y9PWB-p8TtQbH29HLhugneuI_R3eG6Cd64j9HdxEJE7_zGITFcAmWYZF1cm1uE2KQmOoPgZjLrlV569YO&_nc_ohc=2j-6oho5yq4Q7kNvgESDEfx&_nc_ht=scontent.fsgn5-9.fna&oh=00_AYC-Y7t1aSm9tvrluh403-pgeLQY2MRYWlWuuNGdgT3kHQ&oe=6657F4EC)` }}>
                                     <div className="slider-progress"></div>
 
                                 </div>
