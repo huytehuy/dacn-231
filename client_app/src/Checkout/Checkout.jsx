@@ -146,10 +146,9 @@ function Checkout() {
             } else {
                 if (information.email === '') {
 
-                    localStorage.setItem('information', JSON.stringify(information))
-
                     set_show_error(true)
                 } else {
+                    localStorage.setItem('information', JSON.stringify(information))
                     set_show_error(false)
                 }
             }

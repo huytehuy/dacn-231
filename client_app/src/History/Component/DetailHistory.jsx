@@ -17,7 +17,7 @@ function DetailHistory(props) {
     const [detail_order, set_detail_order] = useState([])
 
     const [note, set_note] = useState({})
-    const baseURL = 'http://localhost:3000';
+    const baseURL = 'https://huytehuy.online';
 
     useEffect(() => {
 

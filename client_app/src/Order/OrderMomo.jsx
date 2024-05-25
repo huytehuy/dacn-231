@@ -6,6 +6,11 @@ import CouponAPI from '../API/CouponAPI';
 import NoteAPI from '../API/NoteAPI';
 import OrderAPI from '../API/OrderAPI';
 import Detail_OrderAPI from '../API/Detail_OrderAPI';
+import io from "socket.io-client";
+const socket = io('https://dacn-231-t581.onrender.com', {
+    transports: ['websocket'], jsonp: false
+});
+socket.connect();
 
 function OrderMomo(props) {
     const { search } = window.location;
@@ -105,6 +110,25 @@ function OrderMomo(props) {
                     await Detail_OrderAPI.post_detail_order(data_detail_order)
 
                 }
+                const data_email = {
+                    id_order: response_order._id,
+                    total: localStorage.getItem('total_price'),
+                    fullname: information.fullname,
+                    phone: information.phone,
+                    feeship: price,
+                    address: information.address,
+                    email: JSON.parse(localStorage.getItem('information')).email,
+                    subtotal: localStorage.getItem('total_price') - localStorage.getItem('price'),
+                    data_carts: data_carts,
+                }
+                localStorage.setItem('data',JSON.stringify(data_email))
+        
+                // Gửi socket lên server
+                socket.emit('send_order', "Có người vừa đặt hàng");
+                // Xử lý API Send Mail
+        
+                const send_mail = await OrderAPI.post_email(data_email)
+                console.log(send_mail)
 
                 localStorage.setItem('carts', JSON.stringify([]))
                 localStorage.removeItem('information')
