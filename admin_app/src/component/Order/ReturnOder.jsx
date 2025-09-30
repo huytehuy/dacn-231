@@ -7,12 +7,12 @@ import orderAPI from '../Api/orderAPI';
 import Pagination from '../Shared/Pagination'
 import Search from '../Shared/Search'
 
-function CancelOrder(props) {
+function ConfirmReturnOder(props) {
     const [filter, setFilter] = useState({
         page: '1',
         limit: '4',
         search: '',
-        status: '5'
+        status: '7'
     })
 
     const [order, setOrder] = useState([])
@@ -89,11 +89,13 @@ function CancelOrder(props) {
                                                         <td>
                                                             {(() => {
                                                                 switch (value.status) {
-                                                                    case "1": return "Đang xử lý";
+                                                                   case "1": return "Đang xử lý";
                                                                     case "2": return "Đã xác nhận";
                                                                     case "3": return "Đang giao";
                                                                     case "4": return "Hoàn thành";
-                                                                    default: return "Đơn bị hủy";
+                                                                    case "5": return "Đơn bị hủy";
+                                                                    case "6": return "Đang duyệt trả hàng";
+                                                                    default: return "Đã trả hàng";
                                                                 }
                                                             })()}
                                                         </td>
@@ -121,4 +123,4 @@ function CancelOrder(props) {
     );
 }
 
-export default CancelOrder;
+export default ConfirmReturnOder;

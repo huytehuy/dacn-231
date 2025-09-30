@@ -10,7 +10,8 @@ function CreateProduct(props) {
     const [gender] = useState(["Unisex", "Male", "Female"])
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
-    const [description, setDescription] = useState('');    
+    const [description, setDescription] = useState('');  
+    const [depository, setDepository] = useState('');   
     const [image, setImage] = useState('');
     const [number, setNumber] = useState('');
     const [categoryChoose, setCategoryChoose] = useState('');
@@ -104,6 +105,8 @@ function CreateProduct(props) {
         // formData.append("number", number)
         formData.append("description", description)
         formData.append("gender", genderChoose)
+        formData.append("depository", depository)
+
 
         const response = await productAPI.create(formData)
 
@@ -118,6 +121,7 @@ function CreateProduct(props) {
             setFileName('')
             setImage('')
             setLoading(false);
+            setDepository('')
             window.scrollTo(0, 0)
         }
         setValidationMsg({ api: response.msg })
@@ -174,6 +178,11 @@ function CreateProduct(props) {
                                         <label htmlFor="description">Link ảnh</label>
                                         <input type="text" className="form-control" id="image" name="image" value={image} onChange={(e) => setImage(e.target.value)} required />
                                         <p className="form-text text-danger">{validationMsg.image}</p>
+                                    </div>
+                                    <div className="form-group w-50">
+                                        <label htmlFor="description">Số lượng</label>
+                                        <input type="text" className="form-control" id="depository" name="depository" value={depository} onChange={(e) => setDepository(e.target.value)} required />
+                                        <p className="form-text text-danger">{validationMsg.depository}</p>
                                     </div>
                                     {/* <div className="form-group w-50">
                                         <label htmlFor="number">Số lượng: </label>

@@ -16,7 +16,7 @@ import Menu from './component/Shared/Menu';
 import Product from './component/Product/Product'
 import CreateProduct from './component/Product/CreateProduct'
 import UpdateProduct from './component/Product/UpdateProduct'
-
+import CheckComments from './component/Order/CheckComments';
 import Category from './component/Category/Category'
 import CreateCategory from './component/Category/CreateCategory'
 import DetailCategory from './component/Category/DetailCategory'
@@ -50,7 +50,8 @@ import UpdateCoupon from './component/Conpon/UpdateCoupon';
 import Sale from './component/Sale/Sale';
 import CreateSale from './component/Sale/CreateSale';
 import UpdateSale from './component/Sale/UpdateSale';
-
+import returnOrder from './component/Order/ReturnOder'
+import confirmreturnOrder from './component/Order/ConfirmReturnOder'
 function App() {
   const Home = lazy(() => {
     return new Promise((resolve) => {
@@ -101,11 +102,13 @@ function App() {
             <Route exact path='/order' component={Order} />
             <Route path='/order/detail/:id' component={DetailOrder} />
             <Route path='/confirmorder' component={ConfirmOrder} />
+            <Route path='/returnoder' component={returnOrder} />
             <Route path='/delivery' component={Delivery} />
+            <Route path='/confirmreturnoder' component={confirmreturnOrder} />
             <Route path='/confirmdelivery' component={ConfirmDelivery} />
             <Route path='/completedorder' component={CompletedOrder} />
             <Route path='/cancelorder' component={CancelOrder} />
-
+            <Route path='/checkcomments' component={CheckComments} />
             <Route exact path='/coupon' component={Coupon} />
             <Route path='/coupon/create' component={CreateCoupon} />
             <Route path='/coupon/:id' component={UpdateCoupon} />

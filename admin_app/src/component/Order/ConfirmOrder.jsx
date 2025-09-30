@@ -9,7 +9,7 @@ import Search from '../Shared/Search'
 
 import io from "socket.io-client";
 
-const socket = io('https://dacn-231-t581.onrender.com/', {
+const socket = io('https://datnfixed.onrender.com/', {
     transports: ['websocket'], jsonp: false
 });
 socket.connect();
@@ -128,11 +128,11 @@ function ConfirmOrder(props) {
                                                                 }       
                                                             </div>
                                                         </td>
-                                                        <td className="name">{value._id}</td>
-                                                        <td className="name">{value.id_note.fullname}</td>
-                                                        <td className="name">{value.id_user.email}</td>
-                                                        <td className="name">{value.id_note.phone}</td>
-                                                        <td className="name">{value.address}</td>
+                                                        <td className="name">{value?._id}</td>
+                                                        <td className="name">{value?.id_note?.fullname}</td>
+                                                        <td className="name">{value?.id_user?.email}</td>
+                                                        <td className="name">{value?.id_note?.phone}</td>
+                                                        <td className="name">{value?.address}</td>
                                                         <td>
                                                             {(() => {
                                                                 switch (value.status) {
