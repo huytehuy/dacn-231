@@ -44,11 +44,11 @@ function Login(props) {
 
         if (response.msg === "Đăng nhập thành công") {
             if (response.user?.id_permission?.permission === "Nhân Viên") {
-                addLocal(response.jwt, response.user)
+                addLocal(response.accessToken, response.user)
                 history.push('/customer')
             }
             else if (response.user?.id_permission?.permission === "Admin") {
-                addLocal(response.jwt, response.user)
+                addLocal(response.accessToken, response.user)
                 history.push('/user')
             } else {
                 setValidationMsg({ api: "Bạn không có quyền truy cập" })

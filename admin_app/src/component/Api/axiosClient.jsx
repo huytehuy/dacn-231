@@ -4,7 +4,7 @@ import queryString from 'query-string';
 // Set up default config for http requests here
 // Please have a look at here `https://github.com/axios/axios#requestconfig` for the full list of configs
 const axiosClient = axios.create({
-    baseURL: 'http://localhost:8000/api',
+    baseURL: 'https://api.huytehuy.id.vn/api',
     // baseURL: 'https://dacn-231-t581.onrender.com/api',
     headers: {
         'content-type': 'application/json',
